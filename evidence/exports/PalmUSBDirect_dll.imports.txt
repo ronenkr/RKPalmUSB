@@ -1,0 +1,146 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\PalmUSBDirect.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    KERNEL32.dll
+              1000E010 Import Address Table
+              10010A4C Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                   2E CloseHandle
+                   83 DeviceIoControl
+                  347 Sleep
+                   4D CreateFileA
+                  252 LocalFree
+                  24E LocalAlloc
+                  383 WaitForSingleObject
+                   EF FreeLibrary
+                  198 GetProcAddress
+                  248 LoadLibraryA
+                  2B6 ReleaseMutex
+                  169 GetLastError
+                  175 GetModuleFileNameA
+                  2A9 ReadFile
+                  16B GetLocalTime
+                  13E GetCurrentThreadId
+                   5A CreateMutexA
+                  31B SetLastError
+                  303 SetEndOfFile
+                  226 IsBadCodePtr
+                  229 IsBadReadPtr
+                  1B5 GetStringTypeW
+                  1B2 GetStringTypeA
+                  1BB GetSystemInfo
+                  379 VirtualProtect
+                  16C GetLocaleInfoA
+                  30E SetFilePointer
+                  219 InitializeCriticalSection
+                   E5 FlushFileBuffers
+                  32A SetStdHandle
+                   AF ExitProcess
+                  2CA RtlUnwind
+                  29B RaiseException
+                  20C HeapFree
+                  206 HeapAlloc
+                   B0 ExitThread
+                   69 CreateThread
+                  108 GetCommandLineA
+                  1DF GetVersionExA
+                   8F EnterCriticalSection
+                  247 LeaveCriticalSection
+                  297 QueryPerformanceCounter
+                  1D5 GetTickCount
+                  13B GetCurrentProcessId
+                  1C0 GetSystemTimeAsFileTime
+                  23A LCMapStringA
+                  387 WideCharToMultiByte
+                  26B MultiByteToWideChar
+                  23B LCMapStringW
+                   F5 GetACP
+                  18B GetOEMCP
+                   FC GetCPInfo
+                  354 TlsAlloc
+                  355 TlsFree
+                  357 TlsSetValue
+                  356 TlsGetValue
+                  177 GetModuleHandleA
+                  21F InterlockedExchange
+                  37B VirtualQuery
+                  33B SetUnhandledExceptionFilter
+                   7A DeleteCriticalSection
+                  20A HeapDestroy
+                  208 HeapCreate
+                  376 VirtualFree
+                  373 VirtualAlloc
+                  210 HeapReAlloc
+                  22C IsBadWritePtr
+                  34F TerminateProcess
+                  13A GetCurrentProcess
+                  360 UnhandledExceptionFilter
+                  212 HeapSize
+                  317 SetHandleCount
+                  1B1 GetStdHandle
+                  15E GetFileType
+                  1AF GetStartupInfoA
+                   ED FreeEnvironmentStringsA
+                  14D GetEnvironmentStrings
+                   EE FreeEnvironmentStringsW
+                  14F GetEnvironmentStringsW
+                  394 WriteFile
+
+    USER32.dll
+              1000E16C Import Address Table
+              10010BA8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  13A GetMessageA
+                   A1 DispatchMessageA
+                  2AA TranslateMessage
+                  216 RegisterClassA
+                   60 CreateWindowExA
+                   8E DefWindowProcA
+
+    ADVAPI32.dll
+              1000E000 Import Address Table
+              10010A3C Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  1EC RegQueryValueExA
+                  1C9 RegCloseKey
+                  1CD RegCreateKeyExA
+
+    SETUPAPI.dll
+              1000E154 Import Address Table
+              10010B90 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  11B SetupDiDestroyDeviceInfoList
+                  145 SetupDiGetDeviceRegistryPropertyA
+                  11E SetupDiEnumDeviceInfo
+                  10E SetupDiCreateDeviceInfoList
+                  167 SetupDiOpenDeviceInterfaceA
+
+    VERSION.dll
+              1000E188 Import Address Table
+              10010BC4 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                    0 GetFileVersionInfoA
+                    1 GetFileVersionInfoSizeA
+                    A VerQueryValueA
+
+  Summary
+
+        3000 .data
+        4000 .rdata
+        2000 .reloc
+        1000 .rsrc
+        D000 .text

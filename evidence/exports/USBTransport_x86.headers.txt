@@ -1,0 +1,144 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\USBTransport.dll
+
+PE signature found
+
+File Type: DLL
+
+FILE HEADER VALUES
+             14C machine (x86)
+               5 number of sections
+        477D97C1 time date stamp Fri Jan  4 04:19:45 2008
+               0 file pointer to symbol table
+               0 number of symbols
+              E0 size of optional header
+            210E characteristics
+                   Executable
+                   Line numbers stripped
+                   Symbols stripped
+                   32 bit word machine
+                   DLL
+
+OPTIONAL HEADER VALUES
+             10B magic # (PE32)
+            7.10 linker version
+            6A00 size of code
+            3A00 size of initialized data
+               0 size of uninitialized data
+            7543 entry point (666B7543)
+            1000 base of code
+            8000 base of data
+        666B0000 image base (666B0000 to 666BDFFF)
+            1000 section alignment
+             200 file alignment
+            4.00 operating system version
+            0.00 image version
+            4.00 subsystem version
+               0 Win32 version
+            E000 size of image
+             400 size of headers
+           17574 checksum
+               2 subsystem (Windows GUI)
+               0 DLL characteristics
+          100000 size of stack reserve
+            1000 size of stack commit
+          100000 size of heap reserve
+            1000 size of heap commit
+               0 loader flags
+              10 number of directories
+            9130 [    12B7] RVA [size] of Export Directory
+            886C [      8C] RVA [size] of Import Directory
+            C000 [     4A8] RVA [size] of Resource Directory
+               0 [       0] RVA [size] of Exception Directory
+               0 [       0] RVA [size] of Certificates Directory
+            D000 [     668] RVA [size] of Base Relocation Directory
+               0 [       0] RVA [size] of Debug Directory
+               0 [       0] RVA [size] of Architecture Directory
+               0 [       0] RVA [size] of Global Pointer Directory
+               0 [       0] RVA [size] of Thread Storage Directory
+            8530 [      48] RVA [size] of Load Configuration Directory
+               0 [       0] RVA [size] of Bound Import Directory
+            8000 [     184] RVA [size] of Import Address Table Directory
+               0 [       0] RVA [size] of Delay Import Directory
+               0 [       0] RVA [size] of COM Descriptor Directory
+               0 [       0] RVA [size] of Reserved Directory
+
+
+SECTION HEADER #1
+   .text name
+    6895 virtual size
+    1000 virtual address (666B1000 to 666B7894)
+    6A00 size of raw data
+     400 file pointer to raw data (00000400 to 00006DFF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+60000020 flags
+         Code
+         Execute Read
+
+SECTION HEADER #2
+  .rdata name
+    23E7 virtual size
+    8000 virtual address (666B8000 to 666BA3E6)
+    2400 size of raw data
+    6E00 file pointer to raw data (00006E00 to 000091FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+40000040 flags
+         Initialized Data
+         Read Only
+
+SECTION HEADER #3
+   .data name
+     498 virtual size
+    B000 virtual address (666BB000 to 666BB497)
+     400 size of raw data
+    9200 file pointer to raw data (00009200 to 000095FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+C0000040 flags
+         Initialized Data
+         Read Write
+
+SECTION HEADER #4
+   .rsrc name
+     4A8 virtual size
+    C000 virtual address (666BC000 to 666BC4A7)
+     600 size of raw data
+    9600 file pointer to raw data (00009600 to 00009BFF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+40000040 flags
+         Initialized Data
+         Read Only
+
+SECTION HEADER #5
+  .reloc name
+     872 virtual size
+    D000 virtual address (666BD000 to 666BD871)
+     A00 size of raw data
+    9C00 file pointer to raw data (00009C00 to 0000A5FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+42000040 flags
+         Initialized Data
+         Discardable
+         Read Only
+
+  Summary
+
+        1000 .data
+        3000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        7000 .text

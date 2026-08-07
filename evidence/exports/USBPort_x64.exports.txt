@@ -1,0 +1,37 @@
+﻿
+Dump of file C:\Projects\RKPalmUSB\oldusbdriver\USBPort.dll
+
+File Type: DLL
+
+  Section contains the following exports for USBPort.dll
+
+    00000000 characteristics
+    4D8316AF time date stamp Fri Mar 18 10:24:15 2011
+        0.00 version
+           1 ordinal base
+          12 number of functions
+          12 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00002EE0 PalmUsbClosePort
+          2    1 00002870 PalmUsbGetAttachedDevices
+          3    2 00002840 PalmUsbGetDeviceFriendlyName
+          4    3 00002A90 PalmUsbGetFileNames
+          5    4 00003450 PalmUsbGetTimeouts
+          6    5 00002920 PalmUsbIsPalmOSDeviceNotification
+          7    6 00002DF0 PalmUsbOpenPort
+          8    7 00002F90 PalmUsbReceiveBytes
+          9    8 000028B0 PalmUsbRegisterDeviceInterface
+         10    9 000033A0 PalmUsbSendBytes
+         11    A 00003410 PalmUsbSetTimeouts
+         12    B 000028F0 PalmUsbUnRegisterDeviceInterface
+
+  Summary
+
+        3000 .data
+        1000 .pdata
+        4000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        9000 .text

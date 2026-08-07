@@ -1,0 +1,113 @@
+﻿
+Dump of file C:\Projects\RKPalmUSB\oldusbdriver\USBPort.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    SETUPAPI.dll
+             18000A228 Import Address Table
+             18000C9A8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         171 SetupDiGetDeviceRegistryPropertyA
+                         16B SetupDiGetDeviceInterfaceDetailA
+                         141 SetupDiEnumDeviceInterfaces
+                         1AF SetupDiSetDeviceRegistryPropertyA
+                         13D SetupDiDestroyDeviceInfoList
+                         151 SetupDiGetClassDevsA
+                         140 SetupDiEnumDeviceInfo
+
+    KERNEL32.dll
+             18000A000 Import Address Table
+             18000C780 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         153 GetACP
+                         2A4 HeapReAlloc
+                         2B4 InitializeCriticalSection
+                         1AA GetCurrentProcess
+                          79 CreateFileA
+                         1E6 GetLastError
+                         491 WriteFile
+                         362 ReadFile
+                          43 CloseHandle
+                          CB DeviceIoControl
+                         2E9 LeaveCriticalSection
+                          DA EnterCriticalSection
+                         275 GetVersionExA
+                         1E8 GetLocaleInfoA
+                         2A1 HeapFree
+                         29D HeapAlloc
+                         1AE GetCurrentThreadId
+                         140 FlsSetValue
+                         170 GetCommandLineA
+                         431 TerminateProcess
+                         442 UnhandledExceptionFilter
+                         419 SetUnhandledExceptionFilter
+                         2CB IsDebuggerPresent
+                         397 RtlVirtualUnwind
+                         390 RtlLookupFunctionEntry
+                         389 RtlCaptureContext
+                         354 RaiseException
+                         392 RtlPcToFileHeader
+                         2A5 HeapSetInformation
+                         29F HeapCreate
+                         2A0 HeapDestroy
+                         1F9 GetModuleHandleW
+                         425 Sleep
+                         220 GetProcAddress
+                         105 ExitProcess
+                         23B GetStdHandle
+                         1F4 GetModuleFileNameA
+                         15C GetCPInfo
+                         213 GetOEMCP
+                         2D5 IsValidCodePage
+                          D6 EncodePointer
+                          B8 DecodePointer
+                         13F FlsGetValue
+                         13E FlsFree
+                         3F0 SetLastError
+                         13D FlsAlloc
+                         2DB LCMapStringA
+                         47E WideCharToMultiByte
+                         314 MultiByteToWideChar
+                         2DD LCMapStringW
+                         3EC SetHandleCount
+                         1D8 GetFileType
+                         239 GetStartupInfoA
+                          BF DeleteCriticalSection
+                         14B FreeEnvironmentStringsA
+                         1C0 GetEnvironmentStrings
+                         14C FreeEnvironmentStringsW
+                         1C2 GetEnvironmentStringsW
+                         396 RtlUnwindEx
+                         34E QueryPerformanceCounter
+                         266 GetTickCount
+                         1AB GetCurrentProcessId
+                         24F GetSystemTimeAsFileTime
+                         2A6 HeapSize
+                         2EB LoadLibraryA
+                         2B5 InitializeCriticalSectionAndSpinCount
+                         23D GetStringTypeA
+                         240 GetStringTypeW
+
+    USER32.dll
+             18000A268 Import Address Table
+             18000C9E8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         2E8 UnregisterDeviceNotification
+                         23D RegisterDeviceNotificationA
+
+  Summary
+
+        3000 .data
+        1000 .pdata
+        4000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        9000 .text

@@ -1,0 +1,114 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\USBTransport.dll
+
+File Type: DLL
+
+  Section contains the following exports for USBTransport.dll
+
+    00000000 characteristics
+    477D9156 time date stamp Fri Jan  4 03:52:22 2008
+        0.00 version
+           1 ordinal base
+          90 number of functions
+          90 number of names
+
+    ordinal hint RVA      name
+
+          1    0 000062F0 ??0CBufferManager@@IAE@K@Z
+          2    1 000064E0 ??0CTransportRelHtal@@QAE@PAVCConnectionBase@@@Z
+          3    2 00001870 ??0CUSBTransportHTAL@@QAE@XZ
+          4    3 00002C80 ??0CUSBTransportPAD@@QAE@XZ
+          5    4 00006230 ??1CBufferManager@@IAE@XZ
+          6    5 000062A0 ??1CTransportBase@@UAE@XZ
+          7    6 00006570 ??1CTransportRelHtal@@UAE@XZ
+          8    7 00001960 ??1CUSBTransportHTAL@@UAE@XZ
+          9    8 00002D40 ??1CUSBTransportPAD@@UAE@XZ
+         10    9 00006320 ?AllocateBuffer@CBufferManager@@IAEPAEPAXK@Z
+         11    A 00001520 ?AppendDynTransportMenu@CTransportBase@@UAEEPAUHMENU__@@H@Z
+         12    B 000014F0 ?BytesDetected@CTransportBase@@UAEEXZ
+         13    C 00002810 ?ConnectToHost@CTransportPlugIn@@UAEJEPAUHostInfoType@@@Z
+         14    D 00002810 ?ConnectToHost@CTransportRelHtal@@UAEJEPAUHostInfoType@@@Z
+         15    E 00002810 ?ConnectToHost@CUSBTransportHTAL@@UAEJEPAUHostInfoType@@@Z
+         16    F 00002810 ?ConnectToHost@CUSBTransportPAD@@UAEJEPAUHostInfoType@@@Z
+         17   10 00001140 ?Disconnect@CTransportPlugIn@@UAEJXZ
+         18   11 000065E0 ?Disconnect@CTransportRelHtal@@UAEJXZ
+         19   12 00001B20 ?Disconnect@CUSBTransportHTAL@@UAEJXZ
+         20   13 00002820 ?Disconnect@CUSBTransportPAD@@UAEJXZ
+         21   14 00001140 ?EstablishConnection@CTransportPlugIn@@UAEJXZ
+         22   15 000072F0 ?EstablishConnection@CTransportRelHtal@@UAEJXZ
+         23   16 00002700 ?EstablishConnection@CUSBTransportHTAL@@UAEJXZ
+         24   17 00003700 ?EstablishConnection@CUSBTransportPAD@@UAEJXZ
+         25   18 00001140 ?ForwardCancelRequest@CTransportBase@@UAEJXZ
+         26   19 00005BB0 ?GetAttributes@CTransportBase@@QAEKXZ
+         27   1A 00001530 ?GetDynTransportMenuState@CTransportBase@@UAEXK@Z
+         28   1B 00001500 ?GetHandle@CTransportBase@@UAEPAXXZ
+         29   1C 00005BD0 ?GetLastErrorString@CTransportBase@@QAEPADXZ
+         30   1D 00001140 ?GetTransportObjectPtr@CTransportBase@@UAEPAV1@XZ
+         31   1E 00005B90 ?GetTransportObjectPtr@CTransportPlugIn@@UAEPAVCTransportBase@@XZ
+         32   1F 000014F0 ?IsCancelPending@CTransportBase@@UAEEXZ
+         33   20 00001540 ?IsDynTransportLoaded@CTransportBase@@UAEHK@Z
+         34   21 000014F0 ?IsSerialConnectionPending@CTransportBase@@UAEEXZ
+         35   22 00005BC0 ?MakeNonRemote@CTransportBase@@QAEXXZ
+         36   23 00001140 ?MaxBlockSize@CTransportPlugIn@@UAEKXZ
+         37   24 00001500 ?MaxBlockSize@CTransportRelHtal@@UAEKXZ
+         38   25 00001500 ?MaxBlockSize@CUSBTransportHTAL@@UAEKXZ
+         39   26 00002880 ?MaxBlockSize@CUSBTransportPAD@@UAEKXZ
+         40   27 00001520 ?NotifyTransport@CTransportBase@@UAEEIK@Z
+         41   28 00006F60 ?PollConnection@CTransportRelHtal@@UAEJXZ
+         42   29 00002380 ?PollConnection@CUSBTransportHTAL@@UAEJXZ
+         43   2A 00003640 ?PollConnection@CUSBTransportPAD@@UAEJXZ
+         44   2B 00005B80 ?RecvDataBlock@CTransportPlugIn@@UAEJPAGPAPAXPAK@Z
+         45   2C 00006C40 ?RecvDataBlock@CTransportRelHtal@@UAEJPAGPAPAXPAK@Z
+         46   2D 00002050 ?RecvDataBlock@CUSBTransportHTAL@@UAEJPAGPAPAXPAK@Z
+         47   2E 000037F0 ?RecvDataBlock@CUSBTransportPAD@@UAEJPAGPAPAXPAK@Z
+         48   2F 00005B80 ?RecvDataStream@CTransportPlugIn@@UAEJPAXPAK0@Z
+         49   30 000066B0 ?RecvDataStream@CTransportRelHtal@@UAEJPAXPAK0@Z
+         50   31 000066B0 ?RecvDataStream@CUSBTransportHTAL@@UAEJPAXPAK0@Z
+         51   32 00005B80 ?RecvDataStream@CUSBTransportPAD@@UAEJPAXPAK0@Z
+         52   33 00002810 ?RecvLastCommandResponse@CTransportPlugIn@@UAEJPAPAXPAK@Z
+         53   34 00006670 ?RecvLastCommandResponse@CTransportRelHtal@@UAEJPAPAXPAK@Z
+         54   35 00006670 ?RecvLastCommandResponse@CUSBTransportHTAL@@UAEJPAPAXPAK@Z
+         55   36 00003940 ?RecvLastCommandResponse@CUSBTransportPAD@@UAEJPAPAXPAK@Z
+         56   37 00001510 ?RegisterDeviceNotificationA@CTransportBase@@UAEEPAUHWND__@@@Z
+         57   38 000061C0 ?ReleaseBuffer@CBufferManager@@IAEXPAXPAE@Z
+         58   39 000068C0 ?Reset@CTransportRelHtal@@UAEJXZ
+         59   3A 000019A0 ?Reset@CUSBTransportHTAL@@UAEJXZ
+         60   3B 00002760 ?Reset@CUSBTransportPAD@@UAEJXZ
+         61   3C 00001550 ?SendCommand@CTransportPlugIn@@UAEJPAXKPAPAXPAK@Z
+         62   3D 00006610 ?SendCommand@CTransportRelHtal@@UAEJPAXKPAPAXPAK@Z
+         63   3E 00001B70 ?SendCommand@CUSBTransportHTAL@@UAEJPAXKPAPAXPAK@Z
+         64   3F 00003880 ?SendCommand@CUSBTransportPAD@@UAEJPAXKPAPAXPAK@Z
+         65   40 00005B80 ?SendDataBlock@CTransportPlugIn@@UAEJGPAXK@Z
+         66   41 00006BB0 ?SendDataBlock@CTransportRelHtal@@UAEJGPAXK@Z
+         67   42 00001FC0 ?SendDataBlock@CUSBTransportHTAL@@UAEJGPAXK@Z
+         68   43 00003310 ?SendDataBlock@CUSBTransportPAD@@UAEJGPAXK@Z
+         69   44 00001550 ?SendDataStream@CTransportPlugIn@@UAEJPAXPAKPAPAX1@Z
+         70   45 00006C80 ?SendDataStream@CTransportRelHtal@@UAEJPAXPAKPAPAX1@Z
+         71   46 00002090 ?SendDataStream@CUSBTransportHTAL@@UAEJPAXPAKPAPAX1@Z
+         72   47 00001550 ?SendDataStream@CUSBTransportPAD@@UAEJPAXPAKPAPAX1@Z
+         73   48 00001530 ?SetHandle@CTransportBase@@UAEXPAX@Z
+         74   49 00005BE0 ?SetLogFunc@CTransportBase@@QAEXP6GXPADE@ZE@Z
+         75   4A 00005C00 ?SetRecvTOutOverride@CTransportBase@@QAEJJ@Z
+         76   4B 000068F0 ?StartListen@CTransportRelHtal@@UAEJXZ
+         77   4C 00001140 ?StartListen@CUSBTransportHTAL@@UAEJXZ
+         78   4D 000027A0 ?StartListen@CUSBTransportPAD@@UAEJXZ
+         79   4E 00006910 ?StopListen@CTransportRelHtal@@UAEJXZ
+         80   4F 00001AC0 ?StopListen@CUSBTransportHTAL@@UAEJXZ
+         81   50 000027E0 ?StopListen@CUSBTransportPAD@@UAEJXZ
+         82   51 00001530 ?UpdateDynTransportMenuState@CTransportBase@@UAEXAAJ@Z
+         83   52 00006210 ?UtilReleaseBuffer@CTransportBase@@MAEXPAE@Z
+         84   53 00001730 DynTransCreate
+         85   54 00001670 DynTransGetInfo
+         86   55 00001600 DynTransInit
+         87   56 000016D0 DynTransNotify
+         88   57 000016B0 DynTransRegisterDeviceNotification
+         89   58 00001630 DynTransUnInit
+         90   59 00005F40 TransReturnRcvBuf
+
+  Summary
+
+        1000 .data
+        3000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        7000 .text

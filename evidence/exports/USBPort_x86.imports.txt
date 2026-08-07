@@ -1,0 +1,105 @@
+﻿
+Dump of file C:\Windows\SysWOW64\USBPort.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    SETUPAPI.dll
+              665680F8 Import Address Table
+              665692F0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  145 SetupDiGetDeviceRegistryPropertyA
+                  143 SetupDiGetDeviceInterfaceDetailA
+                  11F SetupDiEnumDeviceInterfaces
+                  178 SetupDiSetDeviceRegistryPropertyA
+                  11B SetupDiDestroyDeviceInfoList
+                  12D SetupDiGetClassDevsA
+                  11E SetupDiEnumDeviceInfo
+
+    KERNEL32.dll
+              66568000 Import Address Table
+              665691F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  208 HeapCreate
+                  212 HeapSize
+                  1C0 GetSystemTimeAsFileTime
+                  13B GetCurrentProcessId
+                  219 InitializeCriticalSection
+                  13A GetCurrentProcess
+                   4D CreateFileA
+                  169 GetLastError
+                  394 WriteFile
+                  2A9 ReadFile
+                   2E CloseHandle
+                   83 DeviceIoControl
+                  247 LeaveCriticalSection
+                   8F EnterCriticalSection
+                  1DF GetVersionExA
+                  1D5 GetTickCount
+                  297 QueryPerformanceCounter
+                  20C HeapFree
+                  206 HeapAlloc
+                  13E GetCurrentThreadId
+                  108 GetCommandLineA
+                  23A LCMapStringA
+                  387 WideCharToMultiByte
+                  26B MultiByteToWideChar
+                  23B LCMapStringW
+                   F5 GetACP
+                  18B GetOEMCP
+                   FC GetCPInfo
+                  354 TlsAlloc
+                  31B SetLastError
+                  355 TlsFree
+                  357 TlsSetValue
+                  356 TlsGetValue
+                  198 GetProcAddress
+                  177 GetModuleHandleA
+                  20A HeapDestroy
+                  376 VirtualFree
+                   7A DeleteCriticalSection
+                  373 VirtualAlloc
+                  210 HeapReAlloc
+                   AF ExitProcess
+                  34F TerminateProcess
+                  317 SetHandleCount
+                  1B1 GetStdHandle
+                  15E GetFileType
+                  1AF GetStartupInfoA
+                  175 GetModuleFileNameA
+                   ED FreeEnvironmentStringsA
+                  14D GetEnvironmentStrings
+                   EE FreeEnvironmentStringsW
+                  14F GetEnvironmentStringsW
+                  360 UnhandledExceptionFilter
+                  16C GetLocaleInfoA
+                  379 VirtualProtect
+                  1BB GetSystemInfo
+                  37B VirtualQuery
+                  1B2 GetStringTypeA
+                  1B5 GetStringTypeW
+                  2CA RtlUnwind
+                  21F InterlockedExchange
+                  248 LoadLibraryA
+
+    USER32.dll
+              66568118 Import Address Table
+              66569310 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  2B5 UnregisterDeviceNotification
+                  21C RegisterDeviceNotificationA
+
+  Summary
+
+        2000 .data
+        2000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        7000 .text

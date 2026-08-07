@@ -1,0 +1,11 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\Hotsync.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Summary
+
+        2000 .data
+       10000 .rdata
+       EB000 .rsrc
+       57000 .text

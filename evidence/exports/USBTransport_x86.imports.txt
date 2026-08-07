@@ -1,0 +1,147 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\USBTransport.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    USBPort.dll
+              666B813C Import Address Table
+              666B8A34 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                    5 PalmUsbIsPalmOSDeviceNotification
+                    6 PalmUsbOpenPort
+                    B PalmUsbUnRegisterDeviceInterface
+                    9 PalmUsbSendBytes
+                    7 PalmUsbReceiveBytes
+                    0 PalmUsbClosePort
+                    8 PalmUsbRegisterDeviceInterface
+                    3 PalmUsbGetFileNames
+
+    PalmCmn.dll
+              666B8134 Import Address Table
+              666B8A2C Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                      Ordinal     2
+
+    KERNEL32.dll
+              666B8000 Import Address Table
+              666B88F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  2A9 ReadFile
+                  219 InitializeCriticalSection
+                   65 CreateSemaphoreA
+                  336 SetThreadPriority
+                  2C5 ResumeThread
+                  350 TerminateThread
+                   7A DeleteCriticalSection
+                  2B7 ReleaseSemaphore
+                  247 LeaveCriticalSection
+                   8F EnterCriticalSection
+                   49 CreateEventA
+                   2E CloseHandle
+                   4D CreateFileA
+                   24 CancelIo
+                  18C GetOverlappedResult
+                  383 WaitForSingleObject
+                  169 GetLastError
+                  394 WriteFile
+                   83 DeviceIoControl
+                  1DF GetVersionExA
+                  1F5 GlobalFree
+                  200 GlobalUnlock
+                  1F9 GlobalLock
+                  1EE GlobalAlloc
+                  1FC GlobalReAlloc
+                  3BC lstrlenA
+
+    USER32.dll
+              666B8160 Import Address Table
+              666B8A58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  1CA LoadStringA
+                   2A CharNextA
+                  2D6 wsprintfA
+                  1B4 KillTimer
+                  27A SetTimer
+                   A1 DispatchMessageA
+                  2AA TranslateMessage
+                  1FF PeekMessageA
+
+    MSVCR71.dll
+              666B807C Import Address Table
+              666B8974 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                   4C __CppXcptFilter
+                  1B8 _onexit
+                   BB _adjust_fdiv
+                  2DF malloc
+                   6B __dllonexit
+                  13F _initterm
+                  2AC free
+                   10 ??1type_info@@UAE@XZ
+                   F1 _except_handler3
+                   2E ?terminate@@YAXXZ
+                    A ??0exception@@QAE@ABV0@@Z
+                   44 _CxxThrowException
+                  30D strncat
+                    B ??0exception@@QAE@XZ
+                    F ??1exception@@UAE@XZ
+                  1C5 _purecall
+                   12 ??3@YAXPAX@Z
+                   20 ??_V@YAXPAX@Z
+                   1F ??_U@YAPAXI@Z
+                  31E time
+                   11 ??2@YAPAXI@Z
+                   51 __CxxFrameHandler
+                  291 clock
+                  189 _mbschr
+                  18D _mbscspn
+                  199 _mbsnbcpy
+                  1A7 _mbspbrk
+                  1A8 _mbsrchr
+                  1AB _mbsspn
+                  1AD _mbsstr
+                  1A9 _mbsrev
+                  18A _mbscmp
+                  190 _mbsicmp
+                  192 _mbsinc
+                  194 _mbslwr
+                  1B0 _mbsupr
+                  180 _mbclen
+                  300 sprintf
+                  15E _ismbcspace
+                  2E6 memmove
+                  32A vsprintf
+                  334 wcslen
+                  153 _ismbcdigit
+                  28B atoi
+                   C9 _beginthreadex
+
+    MSVCP71.dll
+              666B806C Import Address Table
+              666B8964 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  21F ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ
+                  151 ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV01@@Z
+                  158 ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z
+
+  Summary
+
+        1000 .data
+        3000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        7000 .text

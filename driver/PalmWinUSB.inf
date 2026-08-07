@@ -1,0 +1,63 @@
+; PalmWinUSB.inf - binds Palm OS handhelds to Microsoft's in-box winusb.sys.
+;
+; This replaces the obsolete PalmUSBD.sys / AceecaUSBDx64.sys kernel driver. No custom
+; kernel code is installed, so Memory Integrity and Secure Boot stay enabled.
+;
+; The device interface GUID is the one the original USBPort.dll used
+; ({784126BF-4190-11D4-B5C2-00C04F687A67}), kept so that AutoDetect.dll,
+; DeviceMonitor.exe and PalmUSBDirect.dll - which hardcode it - keep working.
+;
+; Hardware IDs: start with only the device you actually have. The full brand list from
+; the legacy AceecaUSBDx64.inf lives in driver/hardware-ids.md; move entries into this
+; file only after testing them.
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = USBDevice
+ClassGuid   = {88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider    = %ProviderName%
+CatalogFile = PalmWinUSB.cat
+DriverVer   = 08/07/2026,1.0.0.0
+PnpLockdown = 1
+
+[Manufacturer]
+%ManufacturerName% = Palm_WinUSB, NTamd64
+
+; ---------------------------------------------------------------------------
+; Supported hardware. Add the exact VID/PID reported by:
+;     pnputil /enum-devices /connected /deviceids
+; Palm-branded devices use VID_0830; the PID varies by model and sometimes
+; differs between charge mode and HotSync mode - record both.
+; ---------------------------------------------------------------------------
+[Palm_WinUSB.NTamd64]
+%PalmGeneric.DeviceDesc% = WinUSB_Install, USB\VID_0830&PID_0061
+%PalmGeneric.DeviceDesc% = WinUSB_Install, USB\VID_0830&PID_0062
+%PalmGeneric.DeviceDesc% = WinUSB_Install, USB\VID_0830&PID_0060
+%PalmGeneric.DeviceDesc% = WinUSB_Install, USB\VID_0830&PID_0050
+%PalmGeneric.DeviceDesc% = WinUSB_Install, USB\VID_0830&PID_0040
+
+[WinUSB_Install.NT]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[WinUSB_Install.NT.Services]
+Include = winusb.inf
+Needs   = WINUSB.NT.Services
+
+[WinUSB_Install.NT.Wdf]
+KmdfService = WINUSB, WinUSB_Install_WdfSection
+
+[WinUSB_Install_WdfSection]
+KmdfLibraryVersion = 1.11
+
+[WinUSB_Install.NT.HW]
+AddReg = WinUSB_Interface_AddReg
+
+[WinUSB_Interface_AddReg]
+; The replacement USBPort.dll opens the device through this interface GUID.
+HKR,,DeviceInterfaceGUIDs,0x00010000,"{784126BF-4190-11D4-B5C2-00C04F687A67}"
+
+[Strings]
+ProviderName            = "RKPalmUSB"
+ManufacturerName        = "Palm OS Handheld (WinUSB)"
+PalmGeneric.DeviceDesc  = "Palm OS Handheld (WinUSB)"

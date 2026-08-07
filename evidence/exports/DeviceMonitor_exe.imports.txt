@@ -1,0 +1,211 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\DeviceMonitor.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    USBPort.dll
+                403228 Import Address Table
+                403A30 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                    4 PalmUsbIsPalmOSDeviceNotification
+
+    AutoDetect.dll
+                40300C Import Address Table
+                403814 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                    5 AdRefresh
+                    3 AdGetDevInfo
+                    0 AdAttachDevice
+                    1 AdDetachDevice
+                    4 AdInit
+
+    MFC42.DLL
+                40303C Import Address Table
+                403844 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                      Ordinal  3922
+                      Ordinal  1089
+                      Ordinal  5199
+                      Ordinal  2396
+                      Ordinal  3346
+                      Ordinal  5300
+                      Ordinal  5302
+                      Ordinal  2725
+                      Ordinal  4079
+                      Ordinal  4698
+                      Ordinal  5307
+                      Ordinal  5289
+                      Ordinal  5714
+                      Ordinal  2982
+                      Ordinal  3147
+                      Ordinal  3259
+                      Ordinal  4465
+                      Ordinal  3136
+                      Ordinal  3262
+                      Ordinal  2985
+                      Ordinal  3081
+                      Ordinal  2976
+                      Ordinal  3830
+                      Ordinal  3831
+                      Ordinal  3825
+                      Ordinal  3079
+                      Ordinal  4080
+                      Ordinal  4622
+                      Ordinal  4424
+                      Ordinal  3738
+                      Ordinal   561
+                      Ordinal   815
+                      Ordinal   800
+                      Ordinal  2648
+                      Ordinal  5718
+                      Ordinal  2055
+                      Ordinal  4160
+                      Ordinal   540
+                      Ordinal   860
+                      Ordinal  5731
+                      Ordinal  2621
+                      Ordinal  1134
+                      Ordinal   641
+                      Ordinal   825
+                      Ordinal  1168
+                      Ordinal  2086
+                      Ordinal  5265
+                      Ordinal  4376
+                      Ordinal  4853
+                      Ordinal  4998
+                      Ordinal  4710
+                      Ordinal  2514
+                      Ordinal  6052
+                      Ordinal  4078
+                      Ordinal  1775
+                      Ordinal  4407
+                      Ordinal  5241
+                      Ordinal  2385
+                      Ordinal  5163
+                      Ordinal  6374
+                      Ordinal  4353
+                      Ordinal  5280
+                      Ordinal  3798
+                      Ordinal  1576
+                      Ordinal  4441
+                      Ordinal  6376
+                      Ordinal  3749
+                      Ordinal  5065
+                      Ordinal  1727
+                      Ordinal  5261
+                      Ordinal  2446
+                      Ordinal  2124
+                      Ordinal  5277
+                      Ordinal  4627
+                      Ordinal  4425
+                      Ordinal  3597
+                      Ordinal   324
+                      Ordinal  4234
+                      Ordinal  2764
+                      Ordinal  2818
+                      Ordinal   755
+                      Ordinal   470
+                      Ordinal  6215
+                      Ordinal  2863
+                      Ordinal  2379
+                      Ordinal  1146
+                      Ordinal  2512
+                      Ordinal  2554
+                      Ordinal  4486
+                      Ordinal  6375
+                      Ordinal  4274
+                      Ordinal  4673
+                      Ordinal   537
+                      Ordinal  4837
+
+    MSVCRT.dll
+                4031B8 Import Address Table
+                4039C0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  2B6 strcat
+                  2BA strcpy
+                  291 malloc
+                   55 __dllonexit
+                  186 _onexit
+                   D3 _exit
+                   48 _XcptFilter
+                  249 exit
+                   8F _acmdln
+                   58 __getmainargs
+                  10F _initterm
+                   83 __setusermatherr
+                   9D _adjust_fdiv
+                   6A __p__commode
+                   6F __p__fmode
+                   81 __set_app_type
+                   CA _except_handler3
+                   B7 _controlfp
+                  257 fopen
+                  266 fwrite
+                  24C fclose
+                  23E atol
+                   49 __CxxFrameHandler
+                  2BE strlen
+                  1AA _setmbcp
+                  2B8 strcmp
+                  2B7 strchr
+
+    KERNEL32.dll
+                403024 Import Address Table
+                40382C Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  150 GetStartupInfoA
+                   2D CreateDirectoryA
+                  175 GetVersionExA
+                  126 GetModuleHandleA
+                  296 Sleep
+
+    USER32.dll
+                403230 Import Address Table
+                403A38 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  1E0 PostQuitMessage
+                   A9 DrawIcon
+                    7 AppendMenuA
+                  214 SendMessageA
+                  145 GetSystemMenu
+                  18C IsIconic
+                  146 GetSystemMetrics
+                  195 KillTimer
+                   B7 EnableWindow
+                  19E LoadIconA
+                   D5 FindWindowA
+                  1DE PostMessageA
+                   F0 GetClientRect
+                  22C SetDlgItemTextA
+                  252 SetTimer
+
+    ADVAPI32.dll
+                403000 Import Address Table
+                403808 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  172 RegOpenKeyExA
+                  17B RegQueryValueExA
+
+  Summary
+
+        1000 .data
+        1000 .rdata
+        2000 .rsrc
+        2000 .text

@@ -1,0 +1,951 @@
+;//////////////////////////////////////////////////////////////////////////////
+;/
+;/ Copyright (c) Access, Inc. 2004 - All Rights Reserved
+;/
+;/ FILE            : AceecaUSBDx64.inf
+;/ DESCRIPTION     : Palm USB Driver Configuration File
+;/
+;/ REVISION HISTORY: 
+;/			Name	Date		Description
+;/			----	----		-----------
+;/			GBe	03/17/2000	Initial Version
+;/			UG	08/30/2001	Modified
+;/			UG  	11/30/2001	Modified
+;/			UG	06/21/2002	Modified
+;/			JPo	12/03/2002	Modified
+;/			UG	10/14/2003	Modified
+;/			UG	03/15/2004	Modified
+;/			UG	10/18/2004	Modified
+;/			JPo	12/08/2004	Modified
+;/			HD	04/04/2011	Ported to 64 bit
+;//////////////////////////////////////////////////////////////////////////////
+
+;==============================================================================
+; Common Sections (Windows 98 & 2000)
+;==============================================================================
+
+[Version]
+Signature			= "$CHICAGO$"
+Class				= %CLASSNAME%
+ClassGUID			= {784126C0-4190-11D4-B5C2-00C04F687A67}
+Provider			= %PROVIDER%
+DriverVer			= 04/04/2011,6.0.1.0
+CatalogFile			= AceecaUSBDx64.cat
+
+[Manufacturer]
+%MANUFACTURER_PALMSOURCE%	= PalmSource_DeviceList,NTamd64
+%MANUFACTURER_PALM%		= Palm_DeviceList,NTamd64
+%MANUFACTURER_HANDSPRING%	= Handspring_DeviceList,NTamd64
+%MANUFACTURER_SONY%		= Sony_DeviceList,NTamd64
+%MANUFACTURER_KYOCERA%		= Kyocera_DeviceList,NTamd64
+%MANUFACTURER_ALPHASMART%	= AlphaSmart_DeviceList,NTamd64
+%MANUFACTURER_ACER%		= Acer_DeviceList,NTamd64
+%MANUFACTURER_LEGEND%		= Legend_DeviceList,NTamd64
+%MANUFACTURER_SAMSUNG%		= Samsung_DeviceList,NTamd64
+%MANUFACTURER_GARMIN%		= Garmin_DeviceList,NTamd64
+%MANUFACTURER_GSPDA%		= GSPDA_DeviceList,NTamd64
+%MANUFACTURER_FOSSIL%		= Fossil_DeviceList,NTamd64
+%MANUFACTURER_ACEECA%		= ACEECA_DeviceList,NTamd64
+
+[PalmSource_DeviceList]
+%PALMSOURCE_DEVICES_1%		= DriverInstall,USB\VID_13E8&PID_0600
+%PALMSOURCE_DEVICES_2%		= DriverInstall,USB\VID_13E8&PID_FF00
+
+[PalmSource_DeviceList]
+%PALMSOURCE_DEVICES_1%		= DriverInstall,USB\VID_13E8&PID_0600
+%PALMSOURCE_DEVICES_2%		= DriverInstall,USB\VID_13E8&PID_FF00
+
+[Palm_DeviceList]
+%PALM_DEVICES_0001%		= DriverInstall,USB\VID_0830&PID_0001
+%PALM_DEVICES_0002%		= DriverInstall,USB\VID_0830&PID_0002
+%PALM_DEVICES_0010%		= DriverInstall,USB\VID_0830&PID_0010
+%PALM_DEVICES_0020%		= DriverInstall,USB\VID_0830&PID_0020
+%PALM_DEVICES_0030%		= DriverInstall,USB\VID_0830&PID_0030
+%PALM_DEVICES_0040%		= DriverInstall,USB\VID_0830&PID_0040
+%PALM_DEVICES_0050%		= DriverInstall,USB\VID_0830&PID_0050
+%PALM_DEVICES_0060%		= DriverInstall,USB\VID_0830&PID_0060
+%PALM_DEVICES_0070%		= DriverInstall,USB\VID_0830&PID_0070
+%PALM_DEVICES_0080%		= DriverInstall,USB\VID_0830&PID_0080
+
+%RESERVED_DEVICE_ID_1%		= DriverInstall,USB\VID_0830&PID_0003
+%RESERVED_DEVICE_ID_2%		= DriverInstall,USB\VID_0830&PID_0004
+%RESERVED_DEVICE_ID_4%		= DriverInstall,USB\VID_0830&PID_0005
+%RESERVED_DEVICE_ID_3%		= DriverInstall,USB\VID_0830&PID_0006
+
+%RESERVED_DEVICE_ID_5%		= DriverInstall,USB\VID_0830&PID_0011
+%RESERVED_DEVICE_ID_6%		= DriverInstall,USB\VID_0830&PID_0012
+%RESERVED_DEVICE_ID_7%		= DriverInstall,USB\VID_0830&PID_0013
+%RESERVED_DEVICE_ID_8%		= DriverInstall,USB\VID_0830&PID_0014
+
+%RESERVED_DEVICE_ID_9%		= DriverInstall,USB\VID_0830&PID_0021
+%RESERVED_DEVICE_ID_10%		= DriverInstall,USB\VID_0830&PID_0022
+%RESERVED_DEVICE_ID_11%		= DriverInstall,USB\VID_0830&PID_0023
+%RESERVED_DEVICE_ID_12%		= DriverInstall,USB\VID_0830&PID_0024
+
+%RESERVED_DEVICE_ID_13%		= DriverInstall,USB\VID_0830&PID_0031
+%RESERVED_DEVICE_ID_14%		= DriverInstall,USB\VID_0830&PID_0032
+%RESERVED_DEVICE_ID_15%		= DriverInstall,USB\VID_0830&PID_0033
+%RESERVED_DEVICE_ID_16%		= DriverInstall,USB\VID_0830&PID_0034
+
+%RESERVED_DEVICE_ID_17%		= DriverInstall,USB\VID_0830&PID_0041
+%RESERVED_DEVICE_ID_18%		= DriverInstall,USB\VID_0830&PID_0042
+%RESERVED_DEVICE_ID_19%		= DriverInstall,USB\VID_0830&PID_0043
+%RESERVED_DEVICE_ID_20%		= DriverInstall,USB\VID_0830&PID_0044
+
+%RESERVED_DEVICE_ID_21%		= DriverInstall,USB\VID_0830&PID_0051
+%RESERVED_DEVICE_ID_22%		= DriverInstall,USB\VID_0830&PID_0052
+%RESERVED_DEVICE_ID_23%		= DriverInstall,USB\VID_0830&PID_0053
+%RESERVED_DEVICE_ID_24%		= DriverInstall,USB\VID_0830&PID_0054
+
+%RESERVED_DEVICE_ID_25%		= DriverInstall,USB\VID_0830&PID_0061
+%RESERVED_DEVICE_ID_26%		= DriverInstall,USB\VID_0830&PID_0062
+%RESERVED_DEVICE_ID_27%		= DriverInstall,USB\VID_0830&PID_0063
+%RESERVED_DEVICE_ID_28%		= DriverInstall,USB\VID_0830&PID_0064
+
+%RESERVED_DEVICE_ID_29%		= DriverInstall,USB\VID_0830&PID_0071
+%RESERVED_DEVICE_ID_30%		= DriverInstall,USB\VID_0830&PID_0072
+
+%RESERVED_DEVICE_ID_31%		= DriverInstall,USB\VID_0830&PID_0081
+%RESERVED_DEVICE_ID_32%		= DriverInstall,USB\VID_0830&PID_0082
+
+
+[Handspring_DeviceList]
+%VISOR_DEVICE_ID_100%		= DriverInstall,USB\VID_082D&PID_0100
+%VISOR_DEVICE_ID_200%		= DriverInstall,USB\VID_082D&PID_0200
+%VISOR_DEVICE_ID_300%		= DriverInstall,USB\VID_082D&PID_0300
+%VISOR_DEVICE_ID_400%		= DriverInstall,USB\VID_082D&PID_0400
+%VISOR_DEVICE_ID_500%		= DriverInstall,USB\VID_082D&PID_0500
+%VISOR_DEVICE_ID_600%		= DriverInstall,USB\VID_082D&PID_0600
+
+
+[Sony_DeviceList]
+%CLIE_DEVICE_ID_01%		= DriverInstall,USB\VID_054C&PID_0066
+%CLIE_DEVICE_ID_02%		= DriverInstall,USB\VID_054C&PID_009A
+%CLIE_DEVICE_ID_03%		= DriverInstall,USB\VID_054C&PID_0095
+%CLIE_DEVICE_ID_04%		= DriverInstall,USB\VID_054C&PID_0038
+%CLIE_DEVICE_ID_05%		= DriverInstall,USB\VID_054C&PID_00DA
+%CLIE_DEVICE_ID_06%		= DriverInstall,USB\VID_054C&PID_00E9
+%CLIE_DEVICE_ID_07%		= DriverInstall,USB\VID_054C&PID_0144
+
+
+
+[Kyocera_DeviceList]
+%KYOCERA_DEVICES%		= DriverInstall,USB\VID_0C88&PID_0021
+
+[AlphaSmart_DeviceList]
+%ALPHASMART_DEVICES%		= DriverInstall,USB\VID_081E&PID_DF00
+
+[Acer_DeviceList]
+%ACER_DEVICE_ID_01%		= DriverInstall,USB\VID_0502&PID_0001
+%ACER_DEVICE_ID_02%		= DriverInstall,USB\VID_0502&PID_0736
+
+[Legend_DeviceList]
+%LEGEND_DEVICE_ID_01%		= DriverInstall,USB\VID_0E7C&PID_2801
+
+[Samsung_DeviceList]
+%SAMSUNG_DEVICE_ID_01%		= DriverInstall,USB\VID_04E8&PID_8001
+%SAMSUNG_DEVICE_ID_02%		= DriverInstall,USB\VID_04E8&PID_6622
+%SAMSUNG_DEVICE_ID_03%		= DriverInstall,USB\VID_04E8&PID_6624
+%SAMSUNG_DEVICE_ID_04%		= DriverInstall,USB\VID_04E8&PID_661E
+%SAMSUNG_DEVICE_ID_05%		= DriverInstall,USB\VID_04E8&PID_6620
+
+[Garmin_DeviceList]
+%GARMIN_DEVICE_ID_01%		= DriverInstall,USB\VID_091E&PID_0004
+
+[GSPDA_DeviceList]
+%GSPDA_DEVICE_ID_01%            = DriverInstall,USB\VID_115e&PID_F100
+
+[Fossil_DeviceList]
+%FOSSIL_DEVICES_0002%		= DriverInstall,USB\VID_0E67&PID_0002
+
+[ACEECA_DeviceList]
+%MEAZURA_DEVICES%		= DriverInstall,USB\VID_4766&PID_0001
+
+
+[DestinationDirs]
+AceecaUSBDx64.Copy.Files		= 12
+
+[AceecaUSBDx64.Copy.Files]
+AceecaUSBDx64.sys,,,0x2
+
+[SourceDisksFiles]
+AceecaUSBDx64.sys			= 1
+
+[SourceDisksNames]
+1				= %INSTALLDISK%,,,
+
+[DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,AceecaUSBDx64.sys
+
+
+[DriverServiceAddReg]
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"MaximumTransferSize",0x10001,4096
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"DebugLevel",0x10001,2
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqStartTimeout",0x10001,100
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqEndTimeout",0x10001,300
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqIncrementTimeout",0x10001,100
+
+
+;==============================================================================
+; Windows AMD64 Sections
+;==============================================================================
+
+[PalmSource_DeviceList.NTamd64]
+%PALMSOURCE_DEVICES_1%		= DriverInstall.NTamd64,USB\VID_13E8&PID_0600
+%PALMSOURCE_DEVICES_2%		= DriverInstall.NTamd64,USB\VID_13E8&PID_FF00
+
+[PalmSource_DeviceList.NTamd64]
+%PALMSOURCE_DEVICES_1%		= DriverInstall.NTamd64,USB\VID_13E8&PID_0600
+%PALMSOURCE_DEVICES_2%		= DriverInstall.NTamd64,USB\VID_13E8&PID_FF00
+
+[Palm_DeviceList.NTamd64]
+%PALM_DEVICES_0001%		= DriverInstall.NTamd64,USB\VID_0830&PID_0001
+%PALM_DEVICES_0002%		= DriverInstall.NTamd64,USB\VID_0830&PID_0002
+%PALM_DEVICES_0010%		= DriverInstall.NTamd64,USB\VID_0830&PID_0010
+%PALM_DEVICES_0020%		= DriverInstall.NTamd64,USB\VID_0830&PID_0020
+%PALM_DEVICES_0030%		= DriverInstall.NTamd64,USB\VID_0830&PID_0030
+%PALM_DEVICES_0040%		= DriverInstall.NTamd64,USB\VID_0830&PID_0040
+%PALM_DEVICES_0050%		= DriverInstall.NTamd64,USB\VID_0830&PID_0050
+%PALM_DEVICES_0060%		= DriverInstall.NTamd64,USB\VID_0830&PID_0060
+%PALM_DEVICES_0070%		= DriverInstall.NTamd64,USB\VID_0830&PID_0070
+%PALM_DEVICES_0080%		= DriverInstall.NTamd64,USB\VID_0830&PID_0080
+
+%RESERVED_DEVICE_ID_1%		= DriverInstall.NTamd64,USB\VID_0830&PID_0003
+%RESERVED_DEVICE_ID_2%		= DriverInstall.NTamd64,USB\VID_0830&PID_0004
+%RESERVED_DEVICE_ID_4%		= DriverInstall.NTamd64,USB\VID_0830&PID_0005
+%RESERVED_DEVICE_ID_3%		= DriverInstall.NTamd64,USB\VID_0830&PID_0006
+
+%RESERVED_DEVICE_ID_5%		= DriverInstall.NTamd64,USB\VID_0830&PID_0011
+%RESERVED_DEVICE_ID_6%		= DriverInstall.NTamd64,USB\VID_0830&PID_0012
+%RESERVED_DEVICE_ID_7%		= DriverInstall.NTamd64,USB\VID_0830&PID_0013
+%RESERVED_DEVICE_ID_8%		= DriverInstall.NTamd64,USB\VID_0830&PID_0014
+
+%RESERVED_DEVICE_ID_9%		= DriverInstall.NTamd64,USB\VID_0830&PID_0021
+%RESERVED_DEVICE_ID_10%		= DriverInstall.NTamd64,USB\VID_0830&PID_0022
+%RESERVED_DEVICE_ID_11%		= DriverInstall.NTamd64,USB\VID_0830&PID_0023
+%RESERVED_DEVICE_ID_12%		= DriverInstall.NTamd64,USB\VID_0830&PID_0024
+
+%RESERVED_DEVICE_ID_13%		= DriverInstall.NTamd64,USB\VID_0830&PID_0031
+%RESERVED_DEVICE_ID_14%		= DriverInstall.NTamd64,USB\VID_0830&PID_0032
+%RESERVED_DEVICE_ID_15%		= DriverInstall.NTamd64,USB\VID_0830&PID_0033
+%RESERVED_DEVICE_ID_16%		= DriverInstall.NTamd64,USB\VID_0830&PID_0034
+
+%RESERVED_DEVICE_ID_17%		= DriverInstall.NTamd64,USB\VID_0830&PID_0041
+%RESERVED_DEVICE_ID_18%		= DriverInstall.NTamd64,USB\VID_0830&PID_0042
+%RESERVED_DEVICE_ID_19%		= DriverInstall.NTamd64,USB\VID_0830&PID_0043
+%RESERVED_DEVICE_ID_20%		= DriverInstall.NTamd64,USB\VID_0830&PID_0044
+
+%RESERVED_DEVICE_ID_21%		= DriverInstall.NTamd64,USB\VID_0830&PID_0051
+%RESERVED_DEVICE_ID_22%		= DriverInstall.NTamd64,USB\VID_0830&PID_0052
+%RESERVED_DEVICE_ID_23%		= DriverInstall.NTamd64,USB\VID_0830&PID_0053
+%RESERVED_DEVICE_ID_24%		= DriverInstall.NTamd64,USB\VID_0830&PID_0054
+
+%RESERVED_DEVICE_ID_25%		= DriverInstall.NTamd64,USB\VID_0830&PID_0061
+%RESERVED_DEVICE_ID_26%		= DriverInstall.NTamd64,USB\VID_0830&PID_0062
+%RESERVED_DEVICE_ID_27%		= DriverInstall.NTamd64,USB\VID_0830&PID_0063
+%RESERVED_DEVICE_ID_28%		= DriverInstall.NTamd64,USB\VID_0830&PID_0064
+
+%RESERVED_DEVICE_ID_29%		= DriverInstall.NTamd64,USB\VID_0830&PID_0071
+%RESERVED_DEVICE_ID_30%		= DriverInstall.NTamd64,USB\VID_0830&PID_0072
+
+%RESERVED_DEVICE_ID_31%		= DriverInstall.NTamd64,USB\VID_0830&PID_0081
+%RESERVED_DEVICE_ID_32%		= DriverInstall.NTamd64,USB\VID_0830&PID_0082
+
+
+[Handspring_DeviceList.NTamd64]
+%VISOR_DEVICE_ID_100%		= DriverInstall.NTamd64,USB\VID_082D&PID_0100
+%VISOR_DEVICE_ID_200%		= DriverInstall.NTamd64,USB\VID_082D&PID_0200
+%VISOR_DEVICE_ID_300%		= DriverInstall.NTamd64,USB\VID_082D&PID_0300
+%VISOR_DEVICE_ID_400%		= DriverInstall.NTamd64,USB\VID_082D&PID_0400
+%VISOR_DEVICE_ID_500%		= DriverInstall.NTamd64,USB\VID_082D&PID_0500
+%VISOR_DEVICE_ID_600%		= DriverInstall.NTamd64,USB\VID_082D&PID_0600
+
+
+[Sony_DeviceList.NTamd64]
+%CLIE_DEVICE_ID_01%		= DriverInstall.NTamd64,USB\VID_054C&PID_0066
+%CLIE_DEVICE_ID_02%		= DriverInstall.NTamd64,USB\VID_054C&PID_009A
+%CLIE_DEVICE_ID_03%		= DriverInstall.NTamd64,USB\VID_054C&PID_0095
+%CLIE_DEVICE_ID_04%		= DriverInstall.NTamd64,USB\VID_054C&PID_0038
+%CLIE_DEVICE_ID_05%		= DriverInstall.NTamd64,USB\VID_054C&PID_00DA
+%CLIE_DEVICE_ID_06%		= DriverInstall.NTamd64,USB\VID_054C&PID_00E9
+%CLIE_DEVICE_ID_07%		= DriverInstall.NTamd64,USB\VID_054C&PID_0144
+
+
+
+[Kyocera_DeviceList.NTamd64]
+%KYOCERA_DEVICES%		= DriverInstall.NTamd64,USB\VID_0C88&PID_0021
+
+[AlphaSmart_DeviceList.NTamd64]
+%ALPHASMART_DEVICES%		= DriverInstall.NTamd64,USB\VID_081E&PID_DF00
+
+[Acer_DeviceList.NTamd64]
+%ACER_DEVICE_ID_01%		= DriverInstall.NTamd64,USB\VID_0502&PID_0001
+%ACER_DEVICE_ID_02%		= DriverInstall.NTamd64,USB\VID_0502&PID_0736
+
+[Legend_DeviceList.NTamd64]
+%LEGEND_DEVICE_ID_01%		= DriverInstall.NTamd64,USB\VID_0E7C&PID_2801
+
+[Samsung_DeviceList.NTamd64]
+%SAMSUNG_DEVICE_ID_01%		= DriverInstall.NTamd64,USB\VID_04E8&PID_8001
+%SAMSUNG_DEVICE_ID_02%		= DriverInstall.NTamd64,USB\VID_04E8&PID_6622
+%SAMSUNG_DEVICE_ID_03%		= DriverInstall.NTamd64,USB\VID_04E8&PID_6624
+%SAMSUNG_DEVICE_ID_04%		= DriverInstall.NTamd64,USB\VID_04E8&PID_661E
+%SAMSUNG_DEVICE_ID_05%		= DriverInstall.NTamd64,USB\VID_04E8&PID_6620
+
+[Garmin_DeviceList.NTamd64]
+%GARMIN_DEVICE_ID_01%		= DriverInstall.NTamd64,USB\VID_091E&PID_0004
+
+[GSPDA_DeviceList.NTamd64]
+%GSPDA_DEVICE_ID_01%            = DriverInstall.NTamd64,USB\VID_115e&PID_F100
+
+[Fossil_DeviceList.NTamd64]
+%FOSSIL_DEVICES_0002%		= DriverInstall.NTamd64,USB\VID_0E67&PID_0002
+
+[ACEECA_DeviceList.NTamd64]
+%MEAZURA_DEVICES%		= DriverInstall.NTamd64,USB\VID_4766&PID_0001
+
+
+[AceecaUSBDx64.Copy.Files.NTamd64]
+AceecaUSBDx64.sys,,,0x2
+
+[DriverAddReg.NTamd64]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,AceecaUSBDx64.sys
+
+
+[DriverServiceAddReg.NTamd64]
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"MaximumTransferSize",0x10001,4096
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"DebugLevel",0x10001,2
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqStartTimeout",0x10001,100
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqEndTimeout",0x10001,300
+HKLM,System\Currentcontrolset\Services\AceecaUSBDx64\Parameters,"VndrReqIncrementTimeout",0x10001,100
+
+
+
+[DriverInstall.NTamd64]
+CopyFiles			= AceecaUSBDx64.Copy.Files
+AddReg				= DriverAddReg.NTamd64
+
+[DriverInstall.NTamd64.Services]
+AddService			= AceecaUSBDx64,2,DriverService.NTamd64
+
+[DriverService.NTamd64]
+ServiceType			= 1
+StartType			= 3
+ErrorControl			= 1
+ServiceBinary			= %12%\AceecaUSBDx64.sys
+AddReg				= DriverServiceAddReg.NTamd64
+
+[ClassInstall32.NTamd64]
+AddReg				= PalmClassRegNT
+
+[PalmClassRegNT.NTamd64]
+HKR,,,0,%CLASSNAME%
+HKR,,Installer32,,"PalmDevCd.dll,PalmOSDeviceClassInstaller"
+HKR,,SilentInstall,,1
+HKR,,Icon,,"101"
+
+;==============================================================================
+; Windows 2000 Sections
+;==============================================================================
+
+[DriverInstall.NT]
+CopyFiles			= AceecaUSBDx64.Copy.Files
+AddReg				= DriverAddReg
+
+[DriverInstall.NT.Services]
+AddService			= AceecaUSBDx64,2,DriverService
+
+[DriverService]
+ServiceType			= 1
+StartType			= 3
+ErrorControl			= 1
+ServiceBinary			= %12%\AceecaUSBDx64.sys
+AddReg				= DriverServiceAddReg
+
+[ClassInstall32]
+AddReg				= PalmClassRegNT
+
+[PalmClassRegNT]
+HKR,,,0,%CLASSNAME%
+HKR,,Installer32,,"PalmDevC.dll,PalmOSDeviceClassInstaller"
+HKR,,SilentInstall,,1
+HKR,,Icon,,"101"
+
+
+;==============================================================================
+; Windows 98 Sections
+;==============================================================================
+
+[DriverInstall]
+CopyFiles			= AceecaUSBDx64.Copy.Files
+AddReg				= DriverAddReg, DriverServiceAddReg
+
+[ClassInstall]
+AddReg				= PalmClassReg9X
+
+[PalmClassReg9X]
+HKR,,,0,%CLASSNAME%
+;HKR,,Installer,,"PalmDevC.dll,PalmOSDeviceClassInstaller"
+HKR,,SilentInstall,,1
+HKR,,Icon,,"-20"
+
+;==============================================================================
+; String Definitions
+;==============================================================================
+
+; ENGLISH ---------------------------------------------------------------------
+
+[Strings]
+PROVIDER			= "ACEECA International Limited                    "
+
+MANUFACTURER_PALMSOURCE		= "Access, Inc."
+MANUFACTURER_PALM			= "Palm, Inc."
+MANUFACTURER_HANDSPRING		= "Handspring, Inc."
+MANUFACTURER_SONY			= "Sony, Corp."
+MANUFACTURER_KYOCERA		= "Kyocera, Corp."
+MANUFACTURER_ALPHASMART		= "AlphaSmart, Inc."
+MANUFACTURER_ACER			= "Acer, Inc."
+MANUFACTURER_LEGEND		= "Legend Holding, Ltd."
+MANUFACTURER_SAMSUNG		= "Samsung."
+MANUFACTURER_GARMIN		= "Garmin, Ltd."
+MANUFACTURER_GSPDA		= "Group Sense PDA Ltd."
+MANUFACTURER_FOSSIL		= "Fossil, Inc."
+MANUFACTURER_ACEECA		= "Aceeca International"
+
+
+CLASSNAME			= "ACEECA Handheld Devices"
+
+INSTALLDISK			= "Aceeca Desktop Installation CD-ROM"
+
+PALMSOURCE_DEVICES_1		= "Access Handheld"
+PALMSOURCE_DEVICES_2		= "Access Handheld"
+
+PALM_DEVICES_0001		= "Palm Handheld"
+PALM_DEVICES_0002		= "Palm Handheld"
+PALM_DEVICES_0010		= "Palm Handheld"
+PALM_DEVICES_0020		= "Palm Handheld"
+PALM_DEVICES_0030		= "Palm Handheld"
+PALM_DEVICES_0040		= "Palm Handheld"
+PALM_DEVICES_0050		= "Palm Handheld"
+PALM_DEVICES_0060		= "Palm Handheld"
+PALM_DEVICES_0070		= "Palm Handheld"
+PALM_DEVICES_0080		= "Palm Handheld"
+
+RESERVED_DEVICE_ID_1		= "Palm Handheld"
+RESERVED_DEVICE_ID_2		= "Palm Handheld"
+RESERVED_DEVICE_ID_3		= "Palm Handheld"
+RESERVED_DEVICE_ID_4		= "Palm Handheld"
+RESERVED_DEVICE_ID_5		= "Palm Handheld"
+RESERVED_DEVICE_ID_6		= "Palm Handheld"
+RESERVED_DEVICE_ID_7		= "Palm Handheld"
+RESERVED_DEVICE_ID_8		= "Palm Handheld"
+RESERVED_DEVICE_ID_9		= "Palm Handheld"
+RESERVED_DEVICE_ID_10		= "Palm Handheld"
+RESERVED_DEVICE_ID_11		= "Palm Handheld"
+RESERVED_DEVICE_ID_12		= "Palm Handheld"
+RESERVED_DEVICE_ID_13		= "Palm Handheld"
+RESERVED_DEVICE_ID_14		= "Palm Handheld"
+RESERVED_DEVICE_ID_15		= "Palm Handheld"
+RESERVED_DEVICE_ID_16		= "Palm Handheld"
+RESERVED_DEVICE_ID_17		= "Palm Handheld"
+RESERVED_DEVICE_ID_18		= "Palm Handheld"
+RESERVED_DEVICE_ID_19		= "Palm Handheld"
+RESERVED_DEVICE_ID_20		= "Palm Handheld"
+RESERVED_DEVICE_ID_21		= "Palm Handheld"
+RESERVED_DEVICE_ID_22		= "Palm Handheld"
+RESERVED_DEVICE_ID_23		= "Palm Handheld"
+RESERVED_DEVICE_ID_24		= "Palm Handheld"
+RESERVED_DEVICE_ID_25		= "Palm Handheld"
+RESERVED_DEVICE_ID_26		= "Palm Handheld"
+RESERVED_DEVICE_ID_27		= "Palm Handheld"
+RESERVED_DEVICE_ID_28		= "Palm Handheld"
+RESERVED_DEVICE_ID_29		= "Palm Handheld"
+RESERVED_DEVICE_ID_30		= "Palm Handheld"
+RESERVED_DEVICE_ID_31		= "Palm Handheld"
+RESERVED_DEVICE_ID_32		= "Palm Handheld"
+
+
+VISOR_DEVICE_ID_100		= "Handspring Handheld"
+VISOR_DEVICE_ID_200		= "Handspring Handheld"
+VISOR_DEVICE_ID_300		= "Handspring Handheld"
+VISOR_DEVICE_ID_400		= "Handspring Handheld"
+VISOR_DEVICE_ID_500		= "Handspring Handheld"
+VISOR_DEVICE_ID_600		= "Handspring Handheld"
+
+CLIE_DEVICE_ID_01		= "Sony Handheld"
+CLIE_DEVICE_ID_02		= "Sony Handheld"
+CLIE_DEVICE_ID_03		= "Sony Handheld"
+CLIE_DEVICE_ID_04		= "Sony Handheld"
+CLIE_DEVICE_ID_05		= "Sony Handheld"
+CLIE_DEVICE_ID_06		= "Sony Handheld"
+CLIE_DEVICE_ID_07		= "Sony Handheld"
+
+KYOCERA_DEVICES			= "Kyocera Handheld"
+
+ALPHASMART_DEVICES		= "AlphaSmart Handheld"
+
+ACER_DEVICE_ID_01		= "Acer Handheld"
+ACER_DEVICE_ID_02		= "Acer Handheld"
+
+LEGEND_DEVICE_ID_01		= "Legend Handheld"
+
+SAMSUNG_DEVICE_ID_01		= "Samsung Handheld"
+SAMSUNG_DEVICE_ID_02		= "Samsung Handheld"
+SAMSUNG_DEVICE_ID_03		= "Samsung Handheld"
+SAMSUNG_DEVICE_ID_04		= "Samsung Handheld"
+SAMSUNG_DEVICE_ID_05		= "Samsung Handheld"
+
+GARMIN_DEVICE_ID_01		= "Garmin Handheld"
+
+GSPDA_DEVICE_ID_01		= "GSPDA Handheld"
+
+FOSSIL_DEVICES_0002		= "Fossil Wrist PDA"
+
+MEAZURA_DEVICES			= "Aceeca Handheld"
+
+; FRENCH ----------------------------------------------------------------------
+
+[Strings.040C]
+
+; Non-localized section
+PROVIDER			= "ACEECA International Limited                              "
+
+MANUFACTURER_PALMSOURCE		= "Access, Inc."
+MANUFACTURER_PALM		= "Palm, Inc."
+MANUFACTURER_HANDSPRING		= "Handspring, Inc."
+MANUFACTURER_SONY		= "Sony, Corp."
+MANUFACTURER_KYOCERA		= "Kyocera, Corp."
+MANUFACTURER_ALPHASMART		= "AlphaSmart, Inc."
+MANUFACTURER_ACER		= "Acer, Inc."
+MANUFACTURER_LEGEND		= "Legend Holding, Ltd."
+MANUFACTURER_SAMSUNG		= "Samsung."
+MANUFACTURER_GARMIN		= "Garmin, Ltd."
+MANUFACTURER_GSPDA		= "Group Sense PDA Ltd."
+MANUFACTURER_FOSSIL		= "Fossil, Inc."
+MANUFACTURER_ACEECA		= "ACEECA Limited."
+
+CLASSNAME			= "Aceeca Handheld Devices"
+
+; Localized section
+INSTALLDISK			= "CD-ROM d'installation Aceeca Desktop"
+
+PALMSOURCE_DEVICES_1		= "Ordinateur de poche Access"
+PALMSOURCE_DEVICES_2		= "Ordinateur de poche Access"
+
+PALM_DEVICES_0001		= "Ordinateur de poche Palm"
+PALM_DEVICES_0002		= "Ordinateur de poche Palm"
+PALM_DEVICES_0010		= "Ordinateur de poche Palm"
+PALM_DEVICES_0020		= "Ordinateur de poche Palm"
+PALM_DEVICES_0030		= "Ordinateur de poche Palm"
+PALM_DEVICES_0040		= "Ordinateur de poche Palm"
+PALM_DEVICES_0050		= "Ordinateur de poche Palm"
+PALM_DEVICES_0060		= "Ordinateur de poche Palm"
+PALM_DEVICES_0070		= "Ordinateur de poche Palm"
+PALM_DEVICES_0080		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_1		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_2		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_3		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_4		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_5		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_6		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_7		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_8		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_9		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_10		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_11		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_12		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_13		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_14		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_15		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_16		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_17		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_18		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_19		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_20		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_21		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_22		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_23		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_24		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_25		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_26		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_27		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_28		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_29		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_30		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_31		= "Ordinateur de poche Palm"
+RESERVED_DEVICE_ID_32		= "Ordinateur de poche Palm"
+
+
+VISOR_DEVICE_ID_100		= "Ordinateur de poche Handspring"
+VISOR_DEVICE_ID_200		= "Ordinateur de poche Handspring"
+VISOR_DEVICE_ID_300		= "Ordinateur de poche Handspring"
+VISOR_DEVICE_ID_400		= "Ordinateur de poche Handspring"
+VISOR_DEVICE_ID_500		= "Ordinateur de poche Handspring"
+VISOR_DEVICE_ID_600		= "Ordinateur de poche Handspring"
+
+CLIE_DEVICE_ID_01		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_02		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_03		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_04		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_05		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_06		= "Ordinateur de poche Sony"
+CLIE_DEVICE_ID_07		= "Ordinateur de poche Sony"
+
+KYOCERA_DEVICES			= "Ordinateur de poche Kyocera"
+
+ALPHASMART_DEVICES		= "Ordinateur de poche AlphaSmart"
+
+ACER_DEVICE_ID_01		= "Ordinateur de poche Acer"
+ACER_DEVICE_ID_02		= "Ordinateur de poche Acer"
+
+LEGEND_DEVICE_ID_01		= "Ordinateur de poche Legend"
+
+SAMSUNG_DEVICE_ID_01		= "Ordinateur de poche Samsung"
+SAMSUNG_DEVICE_ID_02		= "Ordinateur de poche Samsung"
+SAMSUNG_DEVICE_ID_03		= "Ordinateur de poche Samsung"
+SAMSUNG_DEVICE_ID_04		= "Ordinateur de poche Samsung"
+SAMSUNG_DEVICE_ID_05		= "Ordinateur de poche Samsung"
+
+GARMIN_DEVICE_ID_01		= "Ordinateur de poche Garmin"
+
+GSPDA_DEVICE_ID_01		= "Ordinateur de poche GSPDA"
+
+FOSSIL_DEVICES_0002		= "Fossil Wrist PDA"
+
+MEAZURA_DEVICES			= "Ordinateur de poche Aceeca"
+
+; GERMAN ----------------------------------------------------------------------
+
+[Strings.0407]
+
+; Non-localized section
+PROVIDER			= "ACEECA International Limited                    "
+
+MANUFACTURER_PALMSOURCE		= "Access, Inc."
+MANUFACTURER_PALM		= "Palm, Inc."
+MANUFACTURER_HANDSPRING		= "Handspring, Inc."
+MANUFACTURER_SONY		= "Sony, Corp."
+MANUFACTURER_KYOCERA		= "Kyocera, Corp."
+MANUFACTURER_ALPHASMART		= "AlphaSmart, Inc."
+MANUFACTURER_ACER		= "Acer, Inc."
+MANUFACTURER_LEGEND		= "Legend Holding, Ltd."
+MANUFACTURER_SAMSUNG		= "Samsung."
+MANUFACTURER_GARMIN		= "Garmin, Ltd."
+MANUFACTURER_GSPDA		= "Group Sense PDA Ltd."
+MANUFACTURER_FOSSIL		= "Fossil, Inc."
+MANUFACTURER_ACEECA		= "Aceeca International"
+
+CLASSNAME			= "Aceeca Handheld Devices"
+
+; Localized section
+INSTALLDISK			= "Aceeca Desktop-Installations-CD-ROM"
+
+PALMSOURCE_DEVICES_1		= "Access-Handheld"
+PALMSOURCE_DEVICES_2		= "Access-Handheld"
+
+PALM_DEVICES_0001		= "Palm-Handheld"
+PALM_DEVICES_0002		= "Palm-Handheld"
+PALM_DEVICES_0010		= "Palm-Handheld"
+PALM_DEVICES_0020		= "Palm-Handheld"
+PALM_DEVICES_0030		= "Palm-Handheld"
+PALM_DEVICES_0040		= "Palm-Handheld"
+PALM_DEVICES_0050		= "Palm-Handheld"
+PALM_DEVICES_0060		= "Palm-Handheld"
+PALM_DEVICES_0070		= "Palm-Handheld"
+PALM_DEVICES_0080		= "Palm-Handheld"
+
+RESERVED_DEVICE_ID_1		= "Palm-Handheld"
+RESERVED_DEVICE_ID_2		= "Palm-Handheld"
+RESERVED_DEVICE_ID_3		= "Palm-Handheld"
+RESERVED_DEVICE_ID_4		= "Palm-Handheld"
+RESERVED_DEVICE_ID_5		= "Palm-Handheld"
+RESERVED_DEVICE_ID_6		= "Palm-Handheld"
+RESERVED_DEVICE_ID_7		= "Palm-Handheld"
+RESERVED_DEVICE_ID_8		= "Palm-Handheld"
+RESERVED_DEVICE_ID_9		= "Palm-Handheld"
+RESERVED_DEVICE_ID_10		= "Palm-Handheld"
+RESERVED_DEVICE_ID_11		= "Palm-Handheld"
+RESERVED_DEVICE_ID_12		= "Palm-Handheld"
+RESERVED_DEVICE_ID_13		= "Palm-Handheld"
+RESERVED_DEVICE_ID_14		= "Palm-Handheld"
+RESERVED_DEVICE_ID_15		= "Palm-Handheld"
+RESERVED_DEVICE_ID_16		= "Palm-Handheld"
+RESERVED_DEVICE_ID_17		= "Palm-Handheld"
+RESERVED_DEVICE_ID_18		= "Palm-Handheld"
+RESERVED_DEVICE_ID_19		= "Palm-Handheld"
+RESERVED_DEVICE_ID_20		= "Palm-Handheld"
+RESERVED_DEVICE_ID_21		= "Palm-Handheld"
+RESERVED_DEVICE_ID_22		= "Palm-Handheld"
+RESERVED_DEVICE_ID_23		= "Palm-Handheld"
+RESERVED_DEVICE_ID_24		= "Palm-Handheld"
+RESERVED_DEVICE_ID_25		= "Palm-Handheld"
+RESERVED_DEVICE_ID_26		= "Palm-Handheld"
+RESERVED_DEVICE_ID_27		= "Palm-Handheld"
+RESERVED_DEVICE_ID_28		= "Palm-Handheld"
+RESERVED_DEVICE_ID_29		= "Palm-Handheld"
+RESERVED_DEVICE_ID_30		= "Palm-Handheld"
+RESERVED_DEVICE_ID_31		= "Palm-Handheld"
+RESERVED_DEVICE_ID_32		= "Palm-Handheld"
+
+
+VISOR_DEVICE_ID_100		= "Handspring-Handheld"
+VISOR_DEVICE_ID_200		= "Handspring-Handheld"
+VISOR_DEVICE_ID_300		= "Handspring-Handheld"
+VISOR_DEVICE_ID_400		= "Handspring-Handheld"
+VISOR_DEVICE_ID_500		= "Handspring-Handheld"
+VISOR_DEVICE_ID_600		= "Handspring-Handheld"
+
+CLIE_DEVICE_ID_01		= "Sony-Handheld"
+CLIE_DEVICE_ID_02		= "Sony-Handheld"
+CLIE_DEVICE_ID_03		= "Sony-Handheld"
+CLIE_DEVICE_ID_04		= "Sony-Handheld"
+CLIE_DEVICE_ID_05		= "Sony-Handheld"
+CLIE_DEVICE_ID_06		= "Sony-Handheld"
+CLIE_DEVICE_ID_07		= "Sony-Handheld"
+
+KYOCERA_DEVICES			= "Kyocera-Handheld"
+
+ALPHASMART_DEVICES		= "AlphaSmart-Handheld"
+
+ACER_DEVICE_ID_01		= "Acer-Handheld"
+ACER_DEVICE_ID_02		= "Acer-Handheld"
+
+LEGEND_DEVICE_ID_01		= "Legend-Handheld"
+
+SAMSUNG_DEVICE_ID_01		= "Samsung-Handheld"
+SAMSUNG_DEVICE_ID_02		= "Samsung-Handheld"
+SAMSUNG_DEVICE_ID_03		= "Samsung-Handheld"
+SAMSUNG_DEVICE_ID_04		= "Samsung-Handheld"
+SAMSUNG_DEVICE_ID_05		= "Samsung-Handheld"
+
+GARMIN_DEVICE_ID_01		= "Garmin-Handheld"
+
+GSPDA_DEVICE_ID_01		= "GSPDA-Handheld"
+
+FOSSIL_DEVICES_0002		= "Fossil Wrist PDA"
+
+MEAZURA_DEVICES			= "Aceeca Handheld"
+
+; ITALIAN ---------------------------------------------------------------------
+
+[Strings.0410]
+
+; Non-localized section
+PROVIDER			= "ACEECA International Limited                    "
+
+MANUFACTURER_PALMSOURCE		= "Access, Inc."
+MANUFACTURER_PALM		= "Palm, Inc."
+MANUFACTURER_HANDSPRING		= "Handspring, Inc."
+MANUFACTURER_SONY		= "Sony, Corp."
+MANUFACTURER_KYOCERA		= "Kyocera, Corp."
+MANUFACTURER_ALPHASMART		= "AlphaSmart, Inc."
+MANUFACTURER_ACER		= "Acer, Inc."
+MANUFACTURER_LEGEND		= "Legend Holding, Ltd."
+MANUFACTURER_SAMSUNG		= "Samsung."
+MANUFACTURER_GARMIN		= "Garmin, Ltd."
+MANUFACTURER_GSPDA		= "Group Sense PDA Ltd."
+MANUFACTURER_FOSSIL		= "Fossil, Inc."
+MANUFACTURER_ACEECA		= "Aceeca International"
+
+CLASSNAME			= "Aceeca Handheld Devices"
+
+; Localized section
+INSTALLDISK			= "CD-ROM di installazione Aceeca Desktop"
+
+PALMSOURCE_DEVICES_1		= "Palmare Access"
+PALMSOURCE_DEVICES_2		= "Palmare Access"
+
+PALM_DEVICES_0001		= "Palmare Palm"
+PALM_DEVICES_0002		= "Palmare Palm"
+PALM_DEVICES_0010		= "Palmare Palm"
+PALM_DEVICES_0020		= "Palmare Palm"
+PALM_DEVICES_0030		= "Palmare Palm"
+PALM_DEVICES_0040		= "Palmare Palm"
+PALM_DEVICES_0050		= "Palmare Palm"
+PALM_DEVICES_0060		= "Palmare Palm"
+PALM_DEVICES_0070		= "Palmare Palm"
+PALM_DEVICES_0080		= "Palmare Palm"
+
+RESERVED_DEVICE_ID_1		= "Palmare Palm"
+RESERVED_DEVICE_ID_2		= "Palmare Palm"
+RESERVED_DEVICE_ID_3		= "Palmare Palm"
+RESERVED_DEVICE_ID_4		= "Palmare Palm"
+RESERVED_DEVICE_ID_5		= "Palmare Palm"
+RESERVED_DEVICE_ID_6		= "Palmare Palm"
+RESERVED_DEVICE_ID_7		= "Palmare Palm"
+RESERVED_DEVICE_ID_8		= "Palmare Palm"
+RESERVED_DEVICE_ID_9		= "Palmare Palm"
+RESERVED_DEVICE_ID_10		= "Palmare Palm"
+RESERVED_DEVICE_ID_11		= "Palmare Palm"
+RESERVED_DEVICE_ID_12		= "Palmare Palm"
+RESERVED_DEVICE_ID_13		= "Palmare Palm"
+RESERVED_DEVICE_ID_14		= "Palmare Palm"
+RESERVED_DEVICE_ID_15		= "Palmare Palm"
+RESERVED_DEVICE_ID_16		= "Palmare Palm"
+RESERVED_DEVICE_ID_17		= "Palmare Palm"
+RESERVED_DEVICE_ID_18		= "Palmare Palm"
+RESERVED_DEVICE_ID_19		= "Palmare Palm"
+RESERVED_DEVICE_ID_20		= "Palmare Palm"
+RESERVED_DEVICE_ID_21		= "Palmare Palm"
+RESERVED_DEVICE_ID_22		= "Palmare Palm"
+RESERVED_DEVICE_ID_23		= "Palmare Palm"
+RESERVED_DEVICE_ID_24		= "Palmare Palm"
+RESERVED_DEVICE_ID_25		= "Palmare Palm"
+RESERVED_DEVICE_ID_26		= "Palmare Palm"
+RESERVED_DEVICE_ID_27		= "Palmare Palm"
+RESERVED_DEVICE_ID_28		= "Palmare Palm"
+RESERVED_DEVICE_ID_29		= "Palmare Palm"
+RESERVED_DEVICE_ID_30		= "Palmare Palm"
+RESERVED_DEVICE_ID_31		= "Palmare Palm"
+RESERVED_DEVICE_ID_32		= "Palmare Palm"
+
+
+VISOR_DEVICE_ID_100		= "Palmare Handspring"
+VISOR_DEVICE_ID_200		= "Palmare Handspring"
+VISOR_DEVICE_ID_300		= "Palmare Handspring"
+VISOR_DEVICE_ID_400		= "Palmare Handspring"
+VISOR_DEVICE_ID_500		= "Palmare Handspring"
+VISOR_DEVICE_ID_600		= "Palmare Handspring"
+CLIE_DEVICE_ID_01		= "Palmare Sony"
+CLIE_DEVICE_ID_02		= "Palmare Sony"
+CLIE_DEVICE_ID_03		= "Palmare Sony"
+CLIE_DEVICE_ID_04		= "Palmare Sony"
+CLIE_DEVICE_ID_05		= "Palmare Sony"
+CLIE_DEVICE_ID_06		= "Palmare Sony"
+CLIE_DEVICE_ID_07		= "Palmare Sony"
+
+KYOCERA_DEVICES			= "Palmare Kyocera"
+
+ALPHASMART_DEVICES		= "Palmare AlphaSmart"
+
+ACER_DEVICE_ID_01		= "Palmare Acer"
+ACER_DEVICE_ID_02		= "Palmare Acer"
+
+LEGEND_DEVICE_ID_01		= "Palmare Legend"
+
+SAMSUNG_DEVICE_ID_01		= "Palmare Samsung"
+SAMSUNG_DEVICE_ID_02		= "Palmare Samsung"
+SAMSUNG_DEVICE_ID_03		= "Palmare Samsung"
+SAMSUNG_DEVICE_ID_04		= "Palmare Samsung"
+SAMSUNG_DEVICE_ID_05		= "Palmare Samsung"
+
+GARMIN_DEVICE_ID_01		= "Palmare Garmin"
+
+GSPDA_DEVICE_ID_01		= "Palmare GSPDA"
+
+FOSSIL_DEVICES_0002		= "Fossil Wrist PDA"
+
+MEAZURA_DEVICES			= "Palmare Aceeca"
+
+; SPANISH ---------------------------------------------------------------------
+
+[Strings.040A]
+
+; Non-localized section
+PROVIDER			= "ACEECA International Limited                    "
+
+MANUFACTURER_PALMSOURCE		= "Access, Inc."
+MANUFACTURER_PALM		= "Palm, Inc."
+MANUFACTURER_HANDSPRING		= "Handspring, Inc."
+MANUFACTURER_SONY		= "Sony, Corp."
+MANUFACTURER_KYOCERA		= "Kyocera, Corp."
+MANUFACTURER_ALPHASMART		= "AlphaSmart,Inc."
+MANUFACTURER_ACER		= "Acer, Inc."
+MANUFACTURER_LEGEND		= "Legend Holding, Ltd."
+MANUFACTURER_SAMSUNG		= "Samsung."
+MANUFACTURER_GARMIN		= "Garmin, Ltd."
+MANUFACTURER_GSPDA		= "Group Sense PDA Ltd."
+MANUFACTURER_FOSSIL		= "Fossil, Inc."
+MANUFACTURER_ACEECA		= "Aceeca International"
+
+CLASSNAME			= "Aceeca Handheld Devices"
+
+; Localized section
+INSTALLDISK			= "CD-ROM de instalación de Aceeca Desktop"
+
+PALMSOURCE_DEVICES_1		= "Handheld Access"
+PALMSOURCE_DEVICES_2		= "Handheld Access"
+
+PALM_DEVICES_0001		= "Handheld Palm"
+PALM_DEVICES_0002		= "Handheld Palm"
+PALM_DEVICES_0010		= "Handheld Palm"
+PALM_DEVICES_0020		= "Handheld Palm"
+PALM_DEVICES_0030		= "Handheld Palm"
+PALM_DEVICES_0040		= "Handheld Palm"
+PALM_DEVICES_0050		= "Handheld Palm"
+PALM_DEVICES_0060		= "Handheld Palm"
+PALM_DEVICES_0070		= "Handheld Palm"
+PALM_DEVICES_0080		= "Handheld Palm"
+
+RESERVED_DEVICE_ID_1		= "Handheld Palm"
+RESERVED_DEVICE_ID_2		= "Handheld Palm"
+RESERVED_DEVICE_ID_3		= "Handheld Palm"
+RESERVED_DEVICE_ID_4		= "Handheld Palm"
+RESERVED_DEVICE_ID_5		= "Handheld Palm"
+RESERVED_DEVICE_ID_6		= "Handheld Palm"
+RESERVED_DEVICE_ID_7		= "Handheld Palm"
+RESERVED_DEVICE_ID_8		= "Handheld Palm"
+RESERVED_DEVICE_ID_9		= "Handheld Palm"
+RESERVED_DEVICE_ID_10		= "Handheld Palm"
+RESERVED_DEVICE_ID_11		= "Handheld Palm"
+RESERVED_DEVICE_ID_12		= "Handheld Palm"
+RESERVED_DEVICE_ID_13		= "Handheld Palm"
+RESERVED_DEVICE_ID_14		= "Handheld Palm"
+RESERVED_DEVICE_ID_15		= "Handheld Palm"
+RESERVED_DEVICE_ID_16		= "Handheld Palm"
+RESERVED_DEVICE_ID_17		= "Handheld Palm"
+RESERVED_DEVICE_ID_18		= "Handheld Palm"
+RESERVED_DEVICE_ID_19		= "Handheld Palm"
+RESERVED_DEVICE_ID_20		= "Handheld Palm"
+RESERVED_DEVICE_ID_21		= "Handheld Palm"
+RESERVED_DEVICE_ID_22		= "Handheld Palm"
+RESERVED_DEVICE_ID_23		= "Handheld Palm"
+RESERVED_DEVICE_ID_24		= "Handheld Palm"
+RESERVED_DEVICE_ID_25		= "Handheld Palm"
+RESERVED_DEVICE_ID_26		= "Handheld Palm"
+RESERVED_DEVICE_ID_27		= "Handheld Palm"
+RESERVED_DEVICE_ID_28		= "Handheld Palm"
+RESERVED_DEVICE_ID_29		= "Handheld Palm"
+RESERVED_DEVICE_ID_30		= "Handheld Palm"
+RESERVED_DEVICE_ID_31		= "Handheld Palm"
+RESERVED_DEVICE_ID_32		= "Handheld Palm"
+
+VISOR_DEVICE_ID_100		= "Handheld Handspring"
+VISOR_DEVICE_ID_200		= "Handheld Handspring"
+VISOR_DEVICE_ID_300		= "Handheld Handspring"
+VISOR_DEVICE_ID_400		= "Handheld Handspring"
+VISOR_DEVICE_ID_500		= "Handheld Handspring"
+VISOR_DEVICE_ID_600		= "Handheld Handspring"
+
+CLIE_DEVICE_ID_01		= "Handheld Sony"
+CLIE_DEVICE_ID_02		= "Handheld Sony"
+CLIE_DEVICE_ID_03		= "Handheld Sony"
+CLIE_DEVICE_ID_04		= "Handheld Sony"
+CLIE_DEVICE_ID_05		= "Handheld Sony"
+CLIE_DEVICE_ID_06		= "Handheld Sony"
+CLIE_DEVICE_ID_07		= "Handheld Sony"
+
+KYOCERA_DEVICES			= "Handheld Kyocera"
+
+ALPHASMART_DEVICES		= "Handheld AlphaSmart"
+
+ACER_DEVICE_ID_01		= "Handheld Acer"
+ACER_DEVICE_ID_02		= "Handheld Acer"
+
+LEGEND_DEVICE_ID_01		= "Handheld Legend"
+
+SAMSUNG_DEVICE_ID_01		= "Handheld Samsung"
+SAMSUNG_DEVICE_ID_02		= "Handheld Samsung"
+SAMSUNG_DEVICE_ID_03		= "Handheld Samsung"
+SAMSUNG_DEVICE_ID_04		= "Handheld Samsung"
+SAMSUNG_DEVICE_ID_05		= "Handheld Samsung"
+
+GARMIN_DEVICE_ID_01		= "Handheld Garmin"
+
+GSPDA_DEVICE_ID_01		= "Handheld GSPDA"
+
+FOSSIL_DEVICES_0002		= "Fossil Wrist PDA"
+
+MEAZURA_DEVICES			= "Handheld Aceeca"

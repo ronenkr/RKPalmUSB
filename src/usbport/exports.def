@@ -1,0 +1,17 @@
+; Must match the original USBPort.dll export table exactly: undecorated names,
+; ordinals 1-12 in alphabetical order. Verified by scripts\Check-Abi.ps1.
+LIBRARY USBPort
+
+EXPORTS
+    PalmUsbClosePort                    @1
+    PalmUsbGetAttachedDevices           @2
+    PalmUsbGetDeviceFriendlyName        @3
+    PalmUsbGetFileNames                 @4
+    PalmUsbGetTimeouts                  @5
+    PalmUsbIsPalmOSDeviceNotification   @6
+    PalmUsbOpenPort                     @7
+    PalmUsbReceiveBytes                 @8
+    PalmUsbRegisterDeviceInterface      @9
+    PalmUsbSendBytes                    @10
+    PalmUsbSetTimeouts                  @11
+    PalmUsbUnRegisterDeviceInterface    @12

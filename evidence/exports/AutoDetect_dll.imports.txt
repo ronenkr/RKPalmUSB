@@ -1,0 +1,115 @@
+﻿
+Dump of file C:\Program Files (x86)\Palm\AutoDetect.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    KERNEL32.dll
+              1000B00C Import Address Table
+              1000BE5C Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                   57 DeleteFileA
+                  296 Sleep
+                  174 GetVersion
+                   4A CreateThread
+                  11B GetLocalTime
+                   22 CompareStringW
+                   21 CompareStringA
+                  11D GetLocaleInfoW
+                  170 GetTimeZoneInformation
+                  171 GetUserDefaultLCID
+                   77 EnumSystemLocalesA
+                  11C GetLocaleInfoA
+                  1BD IsValidCodePage
+                  1BE IsValidLocale
+                  1B0 InterlockedIncrement
+                  1AD InterlockedDecrement
+                  19F HeapFree
+                  199 HeapAlloc
+                   CA GetCommandLineA
+                  126 GetModuleHandleA
+                  124 GetModuleFileNameA
+                  109 GetEnvironmentVariableA
+                  175 GetVersionExA
+                  19D HeapDestroy
+                  19B HeapCreate
+                  2BF VirtualFree
+                  2BB VirtualAlloc
+                  1A2 HeapReAlloc
+                  1B8 IsBadWritePtr
+                  1AA InitializeCriticalSection
+                   55 DeleteCriticalSection
+                   66 EnterCriticalSection
+                  1C1 LeaveCriticalSection
+                   7D ExitProcess
+                   85 FatalAppExitA
+                  22F RtlUnwind
+                   BF GetCPInfo
+                   B9 GetACP
+                  131 GetOEMCP
+                  29E TerminateProcess
+                   F7 GetCurrentProcess
+                   FA GetCurrentThreadId
+                  2A5 TlsSetValue
+                  2A2 TlsAlloc
+                  2A3 TlsFree
+                  271 SetLastError
+                  2A4 TlsGetValue
+                  11A GetLastError
+                   F9 GetCurrentThread
+                  26D SetHandleCount
+                  152 GetStdHandle
+                  115 GetFileType
+                  150 GetStartupInfoA
+                   B2 FreeEnvironmentStringsA
+                   B3 FreeEnvironmentStringsW
+                  2D2 WideCharToMultiByte
+                  106 GetEnvironmentStrings
+                  108 GetEnvironmentStringsW
+                  2DF WriteFile
+                  1E4 MultiByteToWideChar
+                  1BF LCMapStringA
+                  1C0 LCMapStringW
+                  153 GetStringTypeA
+                  156 GetStringTypeW
+                  2AD UnhandledExceptionFilter
+                  13E GetProcAddress
+                  1C2 LoadLibraryA
+                  262 SetEnvironmentVariableA
+
+    ADVAPI32.dll
+              1000B000 Import Address Table
+              1000BE50 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                  172 RegOpenKeyExA
+                  17B RegQueryValueExA
+
+    USBPort.dll
+              1000B120 Import Address Table
+              1000BF70 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                    A PalmUsbUnRegisterDeviceInterface
+                    7 PalmUsbRegisterDeviceInterface
+                    1 PalmUsbGetAttachedDevices
+                    2 PalmUsbGetDeviceFriendlyName
+                    3 PalmUsbGetTimeouts
+                    8 PalmUsbSendBytes
+                    0 PalmUsbClosePort
+                    5 PalmUsbOpenPort
+                    9 PalmUsbSetTimeouts
+                    6 PalmUsbReceiveBytes
+
+  Summary
+
+        4000 .data
+        2000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        A000 .text
