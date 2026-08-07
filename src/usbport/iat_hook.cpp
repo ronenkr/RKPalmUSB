@@ -35,11 +35,19 @@ DeviceIoControlFn g_real_ioctl = nullptr;
 
 char g_device_path[kPalmUsbPathMax] = {};
 
-// Handles our CreateFileA hook returned in place of opening the device. They never reach
-// the kernel as devices, so any waitable object will do; an event keeps the file system
-// out of it entirely. USBTransport closes them with CloseHandle, which events accept.
-constexpr int kMaxShims = 8;
-HANDLE g_shims[kMaxShims] = {};
+// The handle our CreateFileA hook last returned on this thread, held in TLS.
+//
+// USBTransport's helper is strictly synchronous - CreateFileA, one DeviceIoControl, then
+// CloseHandle, all on one thread with nothing interleaved - so one slot per thread
+// identifies the shim exactly, and the slot is cleared the moment the IOCTL is answered.
+//
+// This replaced a fixed-size table of live shim handles, which was wrong twice over.
+// Nothing ever removed entries, because the CLOSE is done by USBTransport and we never see
+// it, so every PollConnection consumed a slot until the table filled and CreateFileA began
+// refusing - a permanent failure after a few syncs. Worse, Windows recycles handle values,
+// so a stale entry could match an unrelated handle and we would hijack its
+// DeviceIoControl. A slot that lives only for the duration of one call has neither problem.
+DWORD g_shim_tls = TLS_OUT_OF_INDEXES;
 
 void EnsureLock() {
     if (!g_lock_ready) {
@@ -48,11 +56,14 @@ void EnsureLock() {
     }
 }
 
+// Ownership of a shim handle passes to the caller, which always closes it. We must never
+// close one ourselves: by the time we could, the value may name someone else's object.
 bool IsShim(HANDLE handle) {
-    for (HANDLE shim : g_shims) {
-        if (shim != nullptr && shim == handle) return true;
+    if (g_shim_tls == TLS_OUT_OF_INDEXES || handle == nullptr ||
+        handle == INVALID_HANDLE_VALUE) {
+        return false;
     }
-    return false;
+    return TlsGetValue(g_shim_tls) == handle;
 }
 
 // Matches the path USBTransport was given. Falls back to a vendor-id test so a stale or
@@ -87,32 +98,22 @@ HANDLE WINAPI HookedCreateFileA(LPCSTR file_name, DWORD access, DWORD share,
                                   template_file);
     }
 
+    if (g_shim_tls == TLS_OUT_OF_INDEXES) {
+        return g_real_create_file(file_name, access, share, security, creation, flags,
+                                  template_file);
+    }
+
     // Do NOT open the real WinUSB device here. This handle exists only to carry the two
     // IOCTLs below, and opening the device a second time would contend with the handle the
-    // bridge is already using.
+    // bridge is already using. Any waitable object serves; an event keeps the file system
+    // out of it entirely, and CloseHandle - which the caller will call - accepts one.
     HANDLE shim = CreateEventA(nullptr, TRUE, FALSE, nullptr);
     if (shim == nullptr) return INVALID_HANDLE_VALUE;
 
-    EnterCriticalSection(&g_lock);
-    bool stored = false;
-    for (HANDLE& slot : g_shims) {
-        if (slot == nullptr) {
-            slot = shim;
-            stored = true;
-            break;
-        }
-    }
-    LeaveCriticalSection(&g_lock);
+    // A leftover value here means a previous call never reached its DeviceIoControl. The
+    // caller closed that handle regardless, so overwrite the slot and close nothing.
+    TlsSetValue(g_shim_tls, shim);
 
-    if (!stored) {
-        // More than kMaxShims outstanding means we are leaking; fail loudly rather than
-        // hand back a handle the IOCTL hook will not recognise.
-        PALMLOG("hook: shim table full, refusing CreateFileA");
-        CloseHandle(shim);
-        return INVALID_HANDLE_VALUE;
-    }
-
-    PALMLOG("hook: CreateFileA(device) -> shim handle");
     SetLastError(ERROR_SUCCESS);
     return shim;
 }
@@ -120,14 +121,14 @@ HANDLE WINAPI HookedCreateFileA(LPCSTR file_name, DWORD access, DWORD share,
 BOOL WINAPI HookedDeviceIoControl(HANDLE handle, DWORD code, LPVOID in_buffer,
                                   DWORD in_size, LPVOID out_buffer, DWORD out_size,
                                   LPDWORD returned, LPOVERLAPPED overlapped) {
-    EnterCriticalSection(&g_lock);
-    const bool ours = IsShim(handle);
-    LeaveCriticalSection(&g_lock);
-
-    if (!ours) {
+    if (!IsShim(handle)) {
         return g_real_ioctl(handle, code, in_buffer, in_size, out_buffer, out_size,
                             returned, overlapped);
     }
+
+    // One IOCTL per open, so retire the slot now. Leaving it set would let a later,
+    // unrelated handle that reuses this value be mistaken for ours.
+    TlsSetValue(g_shim_tls, nullptr);
 
     // The caller reads GetLastError(), not the BOOL, and treats non-zero as failure - so
     // clearing the error is what actually signals success here.
@@ -243,6 +244,15 @@ void HookInstall() {
         return;
     }
 
+    if (g_shim_tls == TLS_OUT_OF_INDEXES) {
+        g_shim_tls = TlsAlloc();
+        if (g_shim_tls == TLS_OUT_OF_INDEXES) {
+            LeaveCriticalSection(&g_lock);
+            PALMLOG("hook: TlsAlloc failed - NOT installed");
+            return;
+        }
+    }
+
     char opt[8] = {};
     if (GetEnvironmentVariableA("PALMUSB_NO_HOOK", opt, sizeof(opt)) > 0 && opt[0] == '1') {
         g_installed = true;  // do not retry
@@ -286,11 +296,35 @@ void HookInstall() {
 void HookUninstall() {
     if (!g_lock_ready) return;
     EnterCriticalSection(&g_lock);
-    for (HANDLE& slot : g_shims) {
-        if (slot != nullptr) {
-            CloseHandle(slot);
-            slot = nullptr;
+
+    // Put the original imports back before we can be unloaded. USBTransport.dll holds a
+    // static import on this DLL so it should always unload first, but if that order ever
+    // reversed its IAT would point into freed code and the next CreateFileA would crash
+    // the HotSync process.
+    if (g_installed) {
+        HMODULE transport = GetModuleHandleA("USBTransport.dll");
+        if (transport != nullptr) {
+            void* discard = nullptr;
+            if (g_real_ioctl != nullptr) {
+                PatchImport(transport, "DeviceIoControl",
+                            reinterpret_cast<void*>(g_real_ioctl), &discard);
+            }
+            if (g_real_create_file != nullptr) {
+                PatchImport(transport, "CreateFileA",
+                            reinterpret_cast<void*>(g_real_create_file), &discard);
+            }
+            PALMLOG("hook: original imports restored");
         }
+        g_installed = false;
     }
+
+    // Only the TLS index is ours to release. Shim handles belong to USBTransport, which
+    // closes each one immediately after its IOCTL - closing them here would be a double
+    // close, and by then the value may well name an unrelated object.
+    if (g_shim_tls != TLS_OUT_OF_INDEXES) {
+        TlsFree(g_shim_tls);
+        g_shim_tls = TLS_OUT_OF_INDEXES;
+    }
+
     LeaveCriticalSection(&g_lock);
 }

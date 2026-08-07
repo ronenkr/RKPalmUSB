@@ -19,6 +19,9 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD reason, LPVOID reserved) {
             // the heap may be unstable, so skip cleanup and let the OS reclaim.
             if (reserved == nullptr) {
                 BridgeStop();
+                // Must precede LogShutdown: this restores USBTransport.dll's import table
+                // and logs that it did.
+                HookUninstall();
                 PortTableShutdown();
                 LogShutdown();
             }
