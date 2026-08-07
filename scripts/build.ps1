@@ -60,6 +60,8 @@ if ($Target -in 'all', 'dll') {
         'src\usbport\dllmain.cpp'
         'src\usbport\palmusb_api.cpp'
         'src\usbport\winusb_pipe.cpp'
+        'src\usbport\pipe_bridge.cpp'
+        'src\usbport\iat_hook.cpp'
         'src\usbport\port_table.cpp'
         'src\usbport\log.cpp'
     ) | ForEach-Object { "`"$(Join-Path $root $_)`"" }

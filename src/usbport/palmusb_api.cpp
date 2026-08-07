@@ -43,6 +43,7 @@ int __cdecl PalmUsbOpenPort(const char* device_path, DWORD tag) {
     PALMLOG("-> OpenPort(path=%s, tag=0x%08lX)",
             device_path ? device_path : "(null)", tag);
     if (device_path == nullptr || device_path[0] == '\0') return kPalmUsbInvalidPort;
+    HookNoteDevicePath(device_path);
     if (tag != kPalmUsbSyncTag) {
         PALMLOG("OpenPort: unexpected tag 0x%08lX", tag);
     }
@@ -194,6 +195,12 @@ int __cdecl PalmUsbIsPalmOSDeviceNotification(DEV_BROADCAST_HDR* header, DWORD t
     if (out_path != nullptr) {
         strncpy_s(out_path, kPalmUsbPathMax, iface->dbcc_name, _TRUNCATE);
     }
+
+    // This is the path USBTransport.dll stores and later opens directly to issue its two
+    // private IOCTLs, so tell the hooks about it and make sure they are in place before
+    // DynTransCreate runs.
+    HookNoteDevicePath(iface->dbcc_name);
+    HookInstall();
     PALMLOG("device notification matched (out_path=%s) -> TRUE",
             (out_path != nullptr) ? "filled" : "not requested");
     return TRUE;
@@ -236,6 +243,9 @@ int __cdecl PalmUsbGetFileNames(const char* device_path, DWORD tag, char* in_nam
     }
     if (tag != kPalmUsbSyncTag) return kPalmUsbInvalidParam;
 
+    HookNoteDevicePath(device_path);
+    HookInstall();
+
     // USBTransport.dll does NOT hand these names back to us. It opens them itself with
     // CreateFileA (read-only and write-only respectively) and then drives them with raw
     // ReadFile/WriteFile - bypassing PalmUsbOpenPort/SendBytes/ReceiveBytes entirely.
@@ -256,10 +266,44 @@ int __cdecl PalmUsbGetFileNames(const char* device_path, DWORD tag, char* in_nam
         return kPalmUsbInvalidParam;
     }
 
+    // Named-pipe bridge: hand out two pipe names that USBTransport.dll can CreateFileA and
+    // drive with overlapped ReadFile/WriteFile, and pump bytes between them and WinUSB.
+    // Set PALMUSB_BRIDGE=0 to fall back to returning the raw device path, which is known
+    // not to work and is kept only for comparison.
+    bool use_bridge = true;
+    char bridge_opt[8] = {};
+    if (GetEnvironmentVariableA("PALMUSB_BRIDGE", bridge_opt, sizeof(bridge_opt)) > 0 &&
+        bridge_opt[0] == '0') {
+        use_bridge = false;
+    }
+
+    if (use_bridge) {
+        char name_in[kPalmUsbPathMax];
+        char name_out[kPalmUsbPathMax];
+        BridgeGetNames(name_in, sizeof(name_in), name_out, sizeof(name_out));
+
+        // The size-query pass must not start anything; only the fetch pass, which is the
+        // one immediately followed by USBTransport's two CreateFileA calls.
+        if (in_name != nullptr || out_name != nullptr) {
+            const int started = BridgeStart(device_path);
+            if (started != kPalmUsbOk) {
+                PALMLOG("GetFileNames: bridge failed to start, status %d", started);
+                return started;
+            }
+        }
+
+        const bool in_ok = EmitSizedString(name_in, in_name, in_length);
+        const bool out_ok = EmitSizedString(name_out, out_name, out_length);
+        const int status = (in_ok && out_ok) ? kPalmUsbOk : kPalmUsbInvalidParam;
+        PALMLOG("GetFileNames -> status %d (bridge), in_len=%lu out_len=%lu", status,
+                in_length ? *in_length : 0, out_length ? *out_length : 0);
+        return status;
+    }
+
     const bool in_ok = EmitSizedString(device_path, in_name, in_length);
     const bool out_ok = EmitSizedString(device_path, out_name, out_length);
     const int status = (in_ok && out_ok) ? kPalmUsbOk : kPalmUsbInvalidParam;
-    PALMLOG("GetFileNames -> status %d, in_len=%lu out_len=%lu", status,
+    PALMLOG("GetFileNames -> status %d (raw path), in_len=%lu out_len=%lu", status,
             in_length ? *in_length : 0, out_length ? *out_length : 0);
     return status;
 }

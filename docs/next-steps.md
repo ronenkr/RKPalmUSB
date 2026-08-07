@@ -1,78 +1,86 @@
-# Where the project stands, and the decision to make
+# Where the project stands
 
-## What works
+## It works — 2026-08-07
 
-| Piece | State |
+A full HotSync completed against a Palm m125 over WinUSB, with **Memory Integrity and
+Secure Boot enabled throughout** and no third-party kernel driver loaded:
+
+```
+Date Book synchronized successfully
+Address Book synchronized successfully
+To Do List synchronized successfully
+Memo Pad synchronized successfully
+Backed up 13 file(s) successfully
+HotSync session completed successfully on 08/07/26 15:56:02
+```
+
+The only kernel driver in the path is Microsoft's in-box, signed `winusb.sys`.
+
+## What it took
+
+| Piece | Result |
 |---|---|
-| ABI of the original `USBPort.dll` | fully recovered, all 12 exports, `__cdecl`, ordinals 1–12 |
-| Replacement DLL | builds 32-bit, CFG/ASLR/DEP, export table matches the original exactly |
-| WinUSB device package | installed as `oem26.inf`; Palm `0830:0040` binds to `winusb.sys` |
-| Memory Integrity / Secure Boot | never disabled at any point |
-| USB communication | **works** — `palm-usb-probe` reads real data from the handheld |
-| Device notification path | works — HotSync loads our DLL and it identifies the Palm correctly |
+| ABI of the original `USBPort.dll` | fully recovered — 12 exports, `__cdecl`, ordinals 1–12 ([usbport-abi.md](usbport-abi.md)) |
+| Replacement DLL | x86, CFG/ASLR/DEP, export table byte-identical in shape to the original |
+| WinUSB device package | `oem26.inf`; Palm `0830:0040` binds to `winusb.sys` |
+| Named-pipe bridge | serves the two names `PalmUsbGetFileNames` returns, which `USBTransport.dll` opens itself |
+| IAT hook | answers the two private `PalmUSBD.sys` IOCTLs `USBTransport.dll` gates its session on ([usbtransport-ioctls.md](usbtransport-ioctls.md)) |
+| Wire protocol | NET + DLP, verified independently by `palm-usb-probe` ([protocol-notes.md](protocol-notes.md)) |
 
-USB is not the problem. The handheld talks to us over WinUSB on endpoints `0x82`/`0x02`.
+Deployment is still one file in `C:\Program Files (x86)\Palm\`. The system copy in
+`SysWOW64` is never touched, so rollback is a deletion:
+`scripts\Install-Dll.ps1 -Rollback`.
 
-## What blocks it
+## The two blockers, and what they actually were
 
-`USBTransport.dll` calls `PalmUsbGetFileNames`, then **opens the two returned names itself**
-with `CreateFileA` and drives them with raw overlapped `ReadFile`/`WriteFile`/
-`DeviceIoControl`. On that path it never calls `PalmUsbOpenPort`, `PalmUsbSendBytes` or
-`PalmUsbReceiveBytes`, so the WinUSB backend inside our DLL is never reached.
+**1. HotSync never started a session.** Not framing, not the pipes, not the protocol.
+`CUSBTransport*::PollConnection` refuses to proceed unless a private IOCTL (`0x22240C`)
+on the device path answers, and `winusb.sys` implements no such code. It returned
+`0x2005` ("no connection") on every poll, forever. `StartListen` is a stub — that poll is
+the entire connection-detection mechanism. Answering the IOCTL from an IAT hook inside our
+own DLL fixed it. See [usbtransport-ioctls.md](usbtransport-ioctls.md) for the
+disassembly.
 
-Confirmed by experiment: making `GetFileNames` fail does **not** make HotSync fall back to
-the transport class that would use our DLL. It simply gives up on the device.
+**2. The backup conduit aborted with `Protocol Error (6410)`.** This one was our bug.
+`WinUsb_ReadPipe` fills `transferred` *even when it fails with `ERROR_SEM_TIMEOUT`*, and
+`PipeFill` returned early without banking those bytes — silently discarding data that was
+already off the wire. Small conduits never straddled the timeout and passed; the one large
+database did, lost a chunk, and HotSync then waited forever for a NET message that could
+never complete. Confirmed after the fix by the log line
+`read timed out with 256 bytes salvaged` — bytes the previous build dropped.
 
-A WinUSB interface path cannot substitute for those names — WinUSB does not support raw
-`ReadFile`/`WriteFile`, and the two opens request conflicting share modes.
+The lesson worth keeping: a silent truncation is indistinguishable from a peer protocol
+fault. It cost a full round of misdiagnosis pointed at framing.
 
-**No change confined to `USBPort.dll` can fix this.** The capability HotSync needs is
-supplied by a driver, not by a user-mode DLL.
+## Superseded conclusions
 
-## Options
+Earlier revisions of this file recommended a UMDF driver (option A) or abandoning Palm
+Desktop (option B), on the reasoning that **"no change confined to `USBPort.dll` can fix
+this."** That was wrong. It was true that the *documented exports* could not, but the IAT
+hook ships inside the same DLL and needs no driver, so the deployment story never changed.
+Options A–D are closed.
 
-### A. UMDF v2 driver (recommended if the goal is a working HotSync)
+## Lifecycle
 
-Write a user-mode driver that claims the Palm and exposes a device object accepting the
-relative filenames `IN` and `OUT`, mapping reads to the bulk IN pipe and writes to the bulk
-OUT pipe. `PalmUsbGetFileNames` then returns `"<devicePath>\IN"` and `"<devicePath>\OUT"`
-and the existing `USBTransport.dll` code works unmodified.
+**Repeat syncs work** — verified 2026-08-07. Two consecutive syncs in one HotSync Manager
+run, second one `completed successfully` in 4.0 s.
 
-- **Keeps Memory Integrity and Secure Boot enabled** — UMDF drivers run in user mode under
-  Microsoft's in-box, signed `WUDFRd.sys`. No third-party kernel code.
-- Reuses most of what exists: the INF, the signing setup, the endpoint discovery, and the
-  buffering logic in `winusb_pipe.cpp` all carry over.
-- Cost: a WDK UMDF USB driver project, an INF rewrite from WinUSB to UMDF, and the
-  `IRP_MJ_CREATE` filename routing. Meaningfully more work than everything so far.
-- Gives up the project's "no new driver" goal, but keeps its security goal, which was the
-  actual reason that goal existed.
+That needed a third fix. `BridgeStart` treated a matching device path as proof the bridge
+was still live and short-circuited with `already running for this device`, handing HotSync
+pipe names that no thread was servicing and a WinUSB handle for a device that had left the
+bus. The handheld **re-enumerates under an identical path string** on every press, so path
+equality proves nothing about session liveness. `BridgeAliveLocked()` now checks the pump
+threads with `WaitForSingleObject(thread, 0)` and the port's disconnected flag instead;
+`BridgeConnectionPending()` is gated on the same test, so the hooked poll IOCTL cannot
+report a connection from a dead bridge.
 
-### B. Bypass Palm Desktop's transport entirely
+## Remaining work
 
-Write a standalone sync tool over the working WinUSB path, using pilot-link's protocol
-implementation as reference. `palm-usb-probe` is already most of the transport layer.
+Nothing is blocking. Untested:
 
-- No driver work; the current WinUSB package is sufficient.
-- Loses Palm Desktop, its conduits, and the HotSync UI. Backup and PRC/PDB install would
-  have to be reimplemented or taken from pilot-link.
-
-### C. Try a different Palm Desktop version
-
-The transport plug-in differs between releases; an older one may use the
-`PalmUsbOpenPort` path that our DLL already implements. Cheap to test if you have another
-installer, pure speculation otherwise.
-
-### D. Stop here
-
-The reverse-engineering results, the WinUSB package and the probe stand on their own and
-are documented. `scripts\Install-Dll.ps1 -Rollback` and `docs\rollback.md` return the
-machine to its original state.
-
-## Recommendation
-
-If a working HotSync matters, **option A**. It is the only route that reaches the goal
-without disabling the protections the project exists to preserve, and the analysis needed
-to write it is already done — the `IN`/`OUT` contract is recovered and documented.
-
-If the goal was mainly to see whether the drop-in approach could work, the answer is now
-established with evidence, and **option D** is a legitimate place to stop.
+- Unplug during transfer, and cancel from the desktop. The pump threads exit the same way
+  they do at a clean session end, so this *should* be covered, but it has not been run.
+- Two different handhelds in one HotSync run — now takes the restart branch, unverified.
+- Two-way record edits and a PRC install, to exercise paths a backup does not.
+- Harvest other brands' PIDs from `AceecaUSBDx64.inf` if non-Palm devices matter.
+- `docs/installation.md` and `docs/troubleshooting.md` still assume the pre-hook state.

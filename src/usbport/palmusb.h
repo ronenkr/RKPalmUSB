@@ -73,6 +73,55 @@ int PipeWrite(PalmPort& port, const void* data, DWORD length, DWORD* transferred
 // NUL-terminated paths into `paths` laid out as [capacity][kPalmUsbPathMax].
 int PipeEnumerate(char (*paths)[kPalmUsbPathMax], int capacity);
 
+// --- pipe_bridge.cpp ---------------------------------------------------------
+//
+// USBTransport.dll does not hand the names from PalmUsbGetFileNames back to us - it opens
+// them itself with CreateFileA and drives them with overlapped ReadFile/WriteFile. A
+// WinUSB interface path cannot serve that, but a named pipe can: it supports overlapped
+// I/O, ERROR_IO_PENDING, GetOverlappedResult and CancelIo, which is everything that code
+// uses. So we hand out two pipe names and pump bytes between them and WinUSB.
+//
+//   <name_in>   we write, USBTransport reads   (device -> host)
+//   <name_out>  we read,  USBTransport writes  (host -> device)
+
+// Fills the two pipe names for this process. Pure string work - starts nothing.
+void BridgeGetNames(char* name_in, size_t name_in_size, char* name_out,
+                    size_t name_out_size);
+
+// Opens the device, creates both pipe servers and starts the pump threads.
+// Idempotent: a second call for the same device path is a no-op. Returns a PalmUsbStatus.
+int BridgeStart(const char* device_path);
+void BridgeStop();
+
+// True once the handheld has sent anything since the bridge started. This is what the
+// hooked IOCTL 0x22240C reports as "a connection is pending".
+bool BridgeConnectionPending();
+
+// --- iat_hook.cpp ------------------------------------------------------------
+//
+// USBTransport.dll gates its whole session on two private PalmUSBD.sys IOCTLs issued
+// against the device path (docs/usbtransport-ioctls.md):
+//
+//   DynTransCreate   CreateFileA(path) + DeviceIoControl(0x222004) -> 8 bytes.
+//                    {0x82D, 0x100} selects CUSBTransportPAD, anything else HTAL.
+//   PollConnection   CreateFileA(path) + DeviceIoControl(0x22240C) -> 2 bytes.
+//                    Zero, or a non-zero GetLastError, means "no connection" (0x2005)
+//                    and the session never starts.
+//
+// winusb.sys answers neither, and neither does a named pipe, so no change confined to
+// this DLL can get past PollConnection. Both calls go through USBTransport.dll's import
+// table, though, so we answer them by swapping two IAT slots in-process. User mode only -
+// no driver, and Memory Integrity is unaffected.
+
+// Remembers the device path we handed out, so the hooks recognise it. Cheap; no locking
+// beyond a copy.
+void HookNoteDevicePath(const char* device_path);
+
+// Installs the hooks into USBTransport.dll. Idempotent, and a no-op until that module is
+// actually loaded, so it is safe to call from any export.
+void HookInstall();
+void HookUninstall();
+
 // --- port_table.cpp ----------------------------------------------------------
 
 // The port list and its lock. Mirrors the original's single DLL-global critical section.

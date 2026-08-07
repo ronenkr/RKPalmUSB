@@ -1,0 +1,31 @@
+# Build output. Regenerate with scripts\build.ps1 - nothing here is source.
+build/
+
+# Compiler intermediates, wherever they land.
+*.obj
+*.exp
+*.lib
+*.pdb
+*.ilk
+
+# Signing material. A private key must NEVER be committed: anyone holding
+# RKPalmUSB.pfx can sign a driver package that machines trusting our certificate
+# will install. The release ships only the public certificate, release/driver/RKPalmUSB.cer.
+*.pfx
+*.p12
+*.key
+*.snk
+
+# Diagnostic logs (%LOCALAPPDATA%\RKPalmUSB\usbport.log and any stray copies).
+*.log
+
+# The distributable archive. Regenerate from release\ - committing it would duplicate
+# files that are already tracked there.
+RKPalmUSB-release.zip
+
+# Editor and OS noise.
+.vs/
+.vscode/
+*.user
+Thumbs.db
+desktop.ini

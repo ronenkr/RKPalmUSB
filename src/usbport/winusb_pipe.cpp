@@ -218,8 +218,11 @@ int PipeOpen(PalmPort& port, const char* device_path) {
     }
     ApplyPipePolicy(port);
 
-    // One max-packet read must always fit, plus room for what a caller left behind.
-    port.buffer_capacity = port.max_packet_in * 4;
+    // One max-packet read must always fit, plus room for what a caller left behind. Sized
+    // generously rather than minimally: a database backup streams tens of kilobytes, and
+    // at 4 packets per read that was 256 bytes a round trip, so a large transfer crossed
+    // the read timeout dozens of times. Fewer, larger reads means fewer of those boundaries.
+    port.buffer_capacity = port.max_packet_in * 64;
     port.buffer = new (std::nothrow) std::uint8_t[port.buffer_capacity];
     if (port.buffer == nullptr) {
         PipeClose(port);
@@ -276,7 +279,19 @@ int PipeFill(PalmPort& port) {
     if (!WinUsb_ReadPipe(port.winusb, port.pipe_in, port.buffer + port.buffer_tail,
                          request, &transferred, nullptr)) {
         const DWORD error = GetLastError();
-        if (error == ERROR_SEM_TIMEOUT) return kPalmUsbOk;  // idle, not an error
+        if (error == ERROR_SEM_TIMEOUT) {
+            // A timed-out read still reports what it collected before the timer fired, and
+            // those bytes are already off the wire - the device will not resend them.
+            // Dropping them silently truncates the stream, which the peer cannot detect as
+            // an error: it simply waits forever for a NET message that can never complete.
+            // Small transfers never straddle the timeout, so this only bit large database
+            // reads, and looked like a protocol fault rather than data loss.
+            if (transferred > 0) {
+                port.buffer_tail += transferred;
+                PALMLOG("read timed out with %lu bytes salvaged", transferred);
+            }
+            return kPalmUsbOk;  // idle, not an error
+        }
         PALMLOG("ReadPipe failed, err %lu", error);
         if (IsDisconnectError(error)) {
             port.disconnected = true;
