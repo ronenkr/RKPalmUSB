@@ -103,7 +103,7 @@ bool DiscoverEndpointsFromDescriptor(PalmPort& port) {
 bool RefineEndpointsFromDevice(PalmPort& port) {
     PalmExtConnectionInfo info = {};
     WINUSB_SETUP_PACKET setup = {};
-    setup.RequestType = 0xC0;  // device-to-host, vendor, device
+    setup.RequestType = 0xC2;  // device-to-host, vendor, interface
     setup.Request = kRequestGetExtConnectionInfo;
     setup.Length = sizeof(info);
 
@@ -146,7 +146,7 @@ bool RefineEndpointsFromDevice(PalmPort& port) {
 void SendGetConnectionInfo(PalmPort& port) {
     BYTE scratch[64] = {};
     WINUSB_SETUP_PACKET setup = {};
-    setup.RequestType = 0xC0;
+    setup.RequestType = 0xC2;
     setup.Request = kRequestGetConnectionInfo;
     setup.Length = sizeof(scratch);
 
